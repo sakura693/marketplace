@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+/*コントローラを読み込む*/
+use App\Http\Controllers\ItemController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*（仮）会員登録画面を取得*/
+Route::get('/register', [ItemController::class, 'register']);
