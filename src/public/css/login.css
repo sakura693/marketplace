@@ -1,0 +1,62 @@
+.content-form {
+    width: 40%;
+    margin: 0 auto;
+    /*水平方向に中央寄せ*/
+}
+
+.content-heading {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.form__group {
+    margin-bottom: 30px;
+}
+
+.form__group-title {
+    font-weight: bold;
+}
+
+.register-form__error-message {
+    color: red;
+}
+
+.text-input {
+    width: 100%;
+}
+
+.form__button {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.login-btn {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.back-btn {
+    color: blue;
+    text-decoration: none;
+    padding-bottom: 40px;
+    /*適用されない（100vhで考えているから？）*/
+    font-size: 13px;
+}
+
+/*（仮）画面幅が850px以下のデバイス*/
+@media (max-width: 850px) {
+    .content-form {
+        width: 90%;
+        /* タブレット向けに幅を広げる(元は40%) */
+        padding: 10px;
+    }
+}
+
+/*画面幅が1400px以上のデバイス（PCなど）*/
+@media (min-width: 1400px) {
+    .content-form {
+        padding: 30px;
+    }
+}

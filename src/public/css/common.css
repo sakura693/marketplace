@@ -1,0 +1,98 @@
+/*ウェブページのスタイルをリセット*/
+* {
+    margin: 0; /*ブラウザのデフォのmarginをなくす*/
+    padding: 0; /*ブラウザのデフォのpaddingをなくす*/
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%; /*高さをしていないと子要素の高さが適用されない*/
+}
+
+.app{
+    height: 100%;
+    width: 100%;
+}
+
+/*高さをheaderとcontent合わせて100にする*/
+.header{
+    background: black;
+    height: 8vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center; /*垂直方向に中央寄せ*/
+}
+
+.header__image{
+    height: 60%;
+    margin-left: 20px;
+}
+
+/*header検索フォーム*/
+.search__form-input {
+    padding: 7px 150px 7px 30px;
+}
+
+.search__form-input::placeholder {
+    font-size: 13px;
+    color: gray;
+    text-align: left;
+}
+
+/*header各種ボタン*/
+.login-btn {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.mypage-btn {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.sell-btn {
+    color: black;
+    background: white;
+    text-decoration: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+
+
+.content{
+    /*height: 95vh; ⇐これいらないかも*/
+    display: flex;
+}
+
+/*input欄デザイン*/
+input, textarea{
+    border: 1px solid rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 8px 0;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color: rgb(206, 206, 216);
+    font-size: 10px;
+}
+
+/*ボタンのデザイン*/
+.btn{
+    display: block;
+    border: none;
+    color: white;
+    background: rgb(255, 73, 73);
+    border-radius: 3px;
+    width: 100%;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+
+/*ページネーションのデザイン*/
+.pagination{
+}

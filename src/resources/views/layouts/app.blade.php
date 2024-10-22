@@ -13,7 +13,6 @@
         <header class="header">
             <!--headerにロゴを挿入-->
             <image class="header__image" src="{{ asset('header-img/logo.svg')}}" alt="COACHTECH">
-
             @yield('link') <!--ヘッダー部分のボタン用-->
         </header>
         <div class="content">
