@@ -1,0 +1,36 @@
+.content-form{
+    width: 100%;
+}
+
+.item-form{
+    border-bottom: 2px solid gray;
+    margin-top: 40px;
+}
+
+.label-inner{
+    display: flex;
+    gap: 40px;
+    margin-left: 150px;
+}
+
+.recomend-label{
+    font-weight: bold;
+}
+
+.mylist-label{
+    color: red;
+    font-weight: bold;
+}
+
+.item-cards{
+    border: 2px solid green;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.item-card{
+    border: 1.5px solid orange;
+    margin: 20px 30px;
+}

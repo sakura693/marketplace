@@ -8,30 +8,30 @@
 <div class="content-form">
     <h2 class="content-heading">ログイン</h2>
 
-    <form class="register-form" action="" method="post">
+    <form class="login-form" action="/login" method="post">
         @csrf
-        <div class="form__group">
-            <div class="form__group-title">ユーザー名</div>
-            <div class="form__group-content">
-                <input class="text-input" type="text" name="name" value="{{ old('name') }}">
-            </div>
-            <div class="form__error">
-                <p class="register-form__error-message">
-                    @error('name')
-                    {{ $message }}
-                    @enderror
-                </p>
-            </div>
-        </div>
-
         <div class="form__group">
             <div class="form__group-title">メールアドレス</div>
             <div class="form__group-content">
                 <input class="text-input" type="email" name="email" value="{{ old('email') }}">
             </div>
             <div class="form__error">
-                <p class="register-form__error-message">
+                <p class="login-form__error-message">
                     @error('email')
+                    {{ $message }}
+                    @enderror
+                </p>
+            </div>
+        </div>
+        
+        <div class="form__group">
+            <div class="form__group-title">パスワード</div>
+            <div class="form__group-content">
+                <input class="text-input"  type="password" name="password" value="{{ old('password') }}">
+            </div>
+            <div class="form__error">
+                <p class="login-form__error-message">
+                    @error('password')
                     {{ $message }}
                     @enderror
                 </p>

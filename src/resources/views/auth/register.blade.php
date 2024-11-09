@@ -8,7 +8,7 @@
 <div class="content-form">
     <h2 class="content-heading">会員登録</h2>
 
-    <form class="register-form" action="/mypage/profile" method="post">
+    <form class="register-form" action="/register" method="post">
         @csrf
         <div class="form__group">
             <div class="form__group-title">ユーザー名</div>

@@ -45,6 +45,41 @@
     font-size: 13px;
 }
 
+
+/*画像選択部分*/
+.img-group {
+    margin-bottom: 50px;
+}
+
+.img-content{
+    display: flex;
+    align-items: center;
+}
+
+.profile-img {
+    width: 90px;
+    height: 90px;
+    background-color: rgb(224, 224, 224);
+    border-radius: 50%;
+}
+
+.img-btn {
+    display: none;
+}
+
+.img-label {
+    border: 1.5px solid #FF6F61;
+    display: inline-block;
+    color: #FF6F61;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 60px;
+}
+
+
 /*（仮）画面幅が850px以下のデバイス*/
 @media (max-width: 850px) {
     .content-form {

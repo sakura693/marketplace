@@ -1,0 +1,79 @@
+/*ユーザー情報部分*/
+.profile-content__inner{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.profile-img{
+    width: 90px;
+    height: 90px;
+    background-color: rgb(224, 224, 224);
+    border-radius: 50%;
+}
+
+.text{
+    display: flex;
+    align-items: center;
+}
+
+.user-name{
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: 200px;
+    margin-left: 60px;
+}
+
+.profile-label__container{
+    border: 1.5px solid #FF6F61;
+    border-radius: 3px;
+    padding: 3px 20px;
+    cursor: pointer;
+}
+
+.profile-label{
+    color: #FF6F61;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+.content-form {
+    width: 100%;
+}
+
+.item-form {
+    border-bottom: 2px solid gray;
+    margin-top: 40px;
+}
+
+.label-inner {
+    display: flex;
+    gap: 40px;
+    margin-left: 150px;
+}
+
+.recomend-label {
+    font-weight: bold;
+}
+
+.mylist-label {
+    color: red;
+    font-weight: bold;
+}
+
+.item-cards {
+    border: 2px solid green;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.item-card {
+    border: 1.5px solid orange;
+    margin: 20px 30px;
+}

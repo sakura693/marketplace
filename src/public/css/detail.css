@@ -1,0 +1,75 @@
+.content-form{
+    margin: 0 auto; /*中央寄せ*/
+}
+
+.item-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*item-formを等しく半分に分ける*/
+    margin-top: 50px;
+    gap: 40px;
+}
+
+.image{
+    background: rgb(211, 211, 211); 
+    height: 300px;
+    text-align: center;
+    align-content: center;
+}
+
+.item-content__inner{
+    border: 2px solid red;
+}
+
+.item-content__name{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.item-content__brand{
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.yen-mark{
+    font-size: 13px;
+}
+
+.item-content__price-tax{
+    font-size: 13px;
+}
+
+.item-btn{
+    margin-bottom: 20px;
+}
+
+.item-content{
+    border: 2px solid blue;
+    margin-bottom: 30px;
+}
+
+.item-content__heading{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.comment__heading{
+    color: gray;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.comment-input_content{
+    margin-bottom: 20px;
+}
+
+.comment-input_content{
+    resize: none;
+}
+
+.comment-inner{
+    background: rgb(211, 211, 211);
+    padding: 5px 0;
+    font-size: 12px;
+    margin: 5px 0 20px 0;
+}

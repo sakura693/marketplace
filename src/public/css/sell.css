@@ -1,0 +1,169 @@
+.content-form {
+    width: 40%;
+    margin: 0 auto;
+    /*水平方向に中央寄せ*/
+}
+
+.content-heading {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.content-group {
+    margin-bottom:40px; 
+}
+
+
+.content-group__heading{
+    border-bottom: 1.5px solid gray;
+    margin-bottom: 20px;
+}
+
+.content-group__heading-text{
+    font-size: 18px;
+    font-weight: bold;
+    color: gray;
+}
+
+.form__group {
+    margin-bottom: 30px;
+}
+
+.form__group-title {
+    font-weight: bold;
+}
+
+.sell-form__error-message {
+    color: red;
+}
+
+.text-input {
+    width: 100%;
+}
+
+.textarea-box{
+    resize: none; /*textareaのデフォの斜線を消す*/
+}
+
+
+/*以下カテゴリー部分*/
+.categoryies{
+    display: inline-block; /*横並びにするため。blockだと１行につき１つの要素になる*/
+    margin: 20px 3px 8px 3px;
+}
+
+.category-btn{
+    display: none;
+}
+
+.category-btn:checked + .category-name{
+    background: #FF6F61;
+    color: white;
+}
+
+.category-name{
+    border: 1.5px solid #FF6F61;
+    display: inline-block; 
+    color: #FF6F61;
+    border-radius: 15px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/*セレクトボックス*/
+.select-box-wrapper{
+    position: relative;/*セレクトボックスの三角形用*/
+}
+
+.select-box{
+    width: 100%;
+    border: 1px solid rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 8px 0;
+    color: gray;
+    cursor: pointer;
+    appearance: none; /*元の矢印を非表示にする*/
+    padding-left: 10px; /*placeholderの文字を右に寄せるため*/
+}
+
+/*セレクトボックスの三角形*/
+.select-box-wrapper::after{ 
+    position: absolute;
+    top: 18px; /*疑似要素を親要素の上から18pxのところに配置*/
+    right: 10px; /*親要素の右から10pxのところに配置*/
+
+    /*↓疑似要素の幅と高さを0に設定。これでボックス型として表示されなくなり、ボーダーを使って三角形を作れる。*/
+    width: 0; 
+    height: 0;
+
+    border-top: 8px solid gray; /*疑似要素の上にボーダーを設定(三角形の頂点部分)*/
+    border-right: 5px solid transparent; /*右側に透明なボーダーを設定*/
+    border-left: 5px solid transparent; /*左側に透明なボーダーを設定*/
+    content: ""; /*疑似要素のcontentを空の文字列に設定。疑似要素を表示するためにはcontentが必要。*/
+    transform: translateY(-50%); /*垂直方向（Y軸）に要素の高さ50%分だけ移動させる。（親要素内で疑似要素を垂直方向に中央配置するために使う）*/
+}
+
+/* オプションが展開されたときのスタイル */
+.select-box option{
+    background: #818181;
+    color: white;
+}
+
+.img-group{
+    margin-bottom: 50px;
+}
+
+.img-content{
+    border: 1px dashed rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 40px 20px;
+    display: flex; /*これがないとjustify-content効かない*/
+    justify-content: center;
+}
+
+.img-btn{
+    display: none;
+}
+
+.img-label{
+    border: 1.5px solid #FF6F61;
+    display: inline-block;
+    color: #FF6F61;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form__button {
+    margin-top: 60px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.sell-btn {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/*（仮）画面幅が850px以下のデバイス*/
+@media (max-width: 850px) {
+    .content-form {
+        width: 90%;
+        /* タブレット向けに幅を広げる(元は40%) */
+        padding: 10px;
+    }
+}
+
+/*画面幅が1400px以上のデバイス（PCなど）*/
+@media (min-width: 1400px) {
+    .content-form {
+        padding: 30px;
+    }
+}

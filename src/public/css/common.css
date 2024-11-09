@@ -40,11 +40,20 @@ body {
     text-align: left;
 }
 
-/*header各種ボタン*/
-.login-btn {
+.header-btn{
+    display: flex;
+    align-items: center;
+}
+
+/*header各種ボタン
+/*ログアウトボタン*/
+.logout-btn {
     color: white;
-    text-decoration: none;
+    border: none;
+    background: black;
+    cursor: pointer;
     margin-right: 20px;
+    font-size: 17px;
 }
 
 .mypage-btn {
@@ -57,7 +66,7 @@ body {
     color: black;
     background: white;
     text-decoration: none;
-    padding: 5px 15px;
+    padding: 4px 15px;
     border-radius: 3px;
 }
 
@@ -76,8 +85,9 @@ input, textarea{
 
 input::placeholder,
 textarea::placeholder{
-    color: rgb(206, 206, 216);
-    font-size: 10px;
+    color: black;
+    font-size: 12px;
+    padding-left: 5px;
 }
 
 /*ボタンのデザイン*/

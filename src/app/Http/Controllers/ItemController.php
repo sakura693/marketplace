@@ -6,36 +6,46 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\Status; /*追加*/
+use App\Models\Category; /*追加*/
+use App\Models\PaymentMethod; /*追加*/
+use App\Models\Item; /*追加*/
 
 
 class ItemController extends Controller
 {
-    /*会員登録画面を出力*/
-    public function register(){
-        return view('register');
-    }
+    
 
-    /*会員情報を保存してプロフィール設定画面に飛ぶ*/
-    public function store(RegisterRequest $request){
-        $users = $request->all();
-        $user = User::create($users);
-        return redirect('/mypage/profile'); /*リダイレクト先のパスを設定*/
-    }
-
-    /*LoginRequest $request*/
-
-    /*（仮）ログイン画面を出力*/
-    public function login(){
-        return view('login');
-    }
-
+    
      /*（仮）商品一覧画面を出力*/
     public function index(){
-        return view('item');
+        $items = Item::all();
+        return view('item', compact('items'));
     }
 
-    /*（仮）プロフィール画面を出力*/
-    public function profile(){
-        return view('edit-profile');
+    /*（仮）商品出品画面を出力*/
+    public function sell(){
+        $categories = Category::all();
+        $statuses = Status::all();
+        return view('sell', compact('statuses', 'categories'));
     }
+
+    /*（仮）商品詳細画面を出力*/
+    public function detail(){
+        return view('detail');
+    }
+
+    /*（仮）商品購入画面を出力*/
+    public function purchase(){
+        $payment_methods = PaymentMethod::all();
+        return view('purchase', compact('payment_methods'));
+    }
+
+     /*（仮）商品購入画面を出力*/
+    public function address(){
+        return view('address');
+    }
+
+
+    
 }
