@@ -7,27 +7,30 @@
     grid-template-columns: 1fr 1fr; /*item-formを等しく半分に分ける*/
     margin-top: 50px;
     gap: 40px;
+    padding: 0 150px;
 }
 
 .image{
-    background: rgb(211, 211, 211); 
-    height: 300px;
-    text-align: center;
-    align-content: center;
+    width: 100%;
+    margin-top: 10px;
 }
 
-.item-content__inner{
-    border: 2px solid red;
+.form__group{
+    margin-left: 20px;
 }
 
 .item-content__name{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .item-content__brand{
-    font-size: 10px;
+    font-size: 13px;
     margin-bottom: 10px;
+}
+
+.item-content__price{
+    font-size: 20px;
 }
 
 .yen-mark{
@@ -40,22 +43,24 @@
 
 .item-btn{
     margin-bottom: 20px;
+    text-decoration: none;
+    text-align: center;
 }
 
 .item-content{
-    border: 2px solid blue;
     margin-bottom: 30px;
 }
 
 .item-content__heading{
     font-weight: bold;
-    font-size: 17px;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .comment__heading{
     color: gray;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 

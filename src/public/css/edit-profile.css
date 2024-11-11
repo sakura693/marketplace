@@ -79,6 +79,11 @@
     margin-left: 60px;
 }
 
+/*エラーメッセージ*/
+.form__error{
+    color: red;
+}
+
 
 /*（仮）画面幅が850px以下のデバイス*/
 @media (max-width: 850px) {

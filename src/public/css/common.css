@@ -70,6 +70,21 @@ body {
     border-radius: 3px;
 }
 
+/*見せかけのボタン（未認証時に表示するボタン）*/
+.mypage-btn__fake{
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}    
+
+.sell-btn__fake{
+    color: black;
+    background: white;
+    padding: 4px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
 
 .content{
     /*height: 95vh; ⇐これいらないかも*/

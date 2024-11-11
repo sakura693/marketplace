@@ -23,6 +23,11 @@
 
 @section('content')
 <div class="content-form">
+    <!--ログイン後の出力画面（仮）-->
+    @if (Auth::check())
+    <p>ログインできてるよ</p>
+    @endif
+
     <form class="purchase-form" action="" method="">
         <div class="purchase-content__inner">
             <div class="purchase-content item-content">
@@ -52,7 +57,7 @@
             <div class="purchase-content">
                 <div class="purchase-content__upper">
                     <p class="address__label">配送先</p>
-                    <a class="edit-addres__link" href="">変更する</a>
+                    <a class="edit-addres__link" href="/mypage/profile">変更する</a>
                 </div>
                 <div class="purchase-content__main">
                     <p class="address">ここに住所が入ります</p>

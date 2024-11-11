@@ -19,23 +19,38 @@ use App\Http\Controllers\ProfileController; /*追加*/
 |
 */
 
+
+/*商品一覧画面を取得*/
+Route::get('/', [ItemController::class, 'index']);
+
+/*商品詳細画面を取得*/
+Route::get('/item/{item_id}', [ItemController::class, 'show']);
+
+Route::middleware('auth')->group(function () {
+    /*（仮）プロフィール画面を取得*/
+    Route::get('/mypage', [ProfileController::class, 'mypage']);
+
+    /*（仮）商品出品画面を取得*/
+    Route::get('/sell', [ItemController::class, 'sell']);
+
+    /*（（仮））商品購入画面を取得*/
+    Route::get('/purchase', [ItemController::class, 'purchase']);
+
+    
+});
+
+
+
+
 /*（仮）プロフィール編集画面を取得*/
 Route::get('/mypage/profile', [RegisterController::class, 'profile']);
 
-/*（仮）商品一覧画面を取得*/
-Route::get('/', [ItemController::class, 'index']);
+/*（仮）patchメソッド*/
+Route::patch('/', [ProfileController::class, 'update']);
 
-/*（仮）商品出品画面を取得*/
-Route::get('/sell', [ItemController::class, 'sell']);
 
-/*（（仮））商品詳細画面を取得*/
-Route::get('/item', [ItemController::class, 'detail']);
 
-/*（（仮））商品購入画面を取得*/
-Route::get('/purchase', [ItemController::class, 'purchase']);
 
 /*（（仮））商品購入画面を取得*/
 Route::get('/purchase/address', [ItemController::class, 'address']);
 
-/*（仮）プロフィール画面を取得*/
-Route::get('/mypage', [ProfileController::class, 'mypage']);

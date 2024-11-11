@@ -15,7 +15,7 @@
         @csrf
         <input class="logout-btn" type="submit" value="ログアウト">
     </form>
-    <a class="mypage-btn" href="">マイページ</a>
+    <a class="mypage-btn" href="/mypage">マイページ</a>
     <a class="sell-btn" href="/sell">出品</a>
 </div>
 @endsection
@@ -23,6 +23,11 @@
 
 @section('content')
 <div class="content-form">
+    <!--ログイン後の出力画面（仮）-->
+    @if (Auth::check())
+    <p>ログインできてるよ</p>
+    @endif
+
     <h2 class="content-heading">商品の出品</h2>
 
     <form class="sell-form" action="" method="">

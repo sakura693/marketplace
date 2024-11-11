@@ -22,30 +22,41 @@
 
 @section('content')
 <div class="content-form">
-    <form class="item-form" action="">
+    <!--ログイン後の出力画面（仮）-->
+    @if (Auth::check())
+    <p>ログインできてるよ</p>
+    @endif
+    
+    <form class="item-form" action="/item/{{ $item->id }}/update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="item-image">
-            <div class="image">商品画像</div>
+            <div class="item-image__inner">
+                <img class="image" src="{{ asset($item->image) }}" alt="{{ $item->name }}">
+            </div>
         </div>
         <div class="form__group">
-            <div class="item-inner__content">
-                <p class="item-content__name">商品名</p>
+            <div class="item-content__inner">
+                <p class="item-content__name">{{ $item->name }}</p>
                 <p class="item-content__brand">ブランド名</p>
-                <p class="item-content__price"><span class="yen-mark">￥</span>47,0000<span class="item-content__price-tax">（税込）<span></p>
-                <!--星とか吹き出し-->
-                <input class="item-btn btn" type="submit" value="購入手続きへ">
+                <p class="item-content__price"><span class="yen-mark">￥</span>{{ $item->price}}<span class="item-content__price-tax">（税込）<span></p>
+                <!--星とか吹き出し追加-->
+                <a class="item-btn btn" href="/purchase">購入手続きへ</a>
 
 
                 <div class="item-content">
                     <p class="item-content__heading">商品説明</p>
-                    <p class="item-description__content">あああ</p>
+                    <p class="item-description__content">{{ $item->description }}</p>
                 </div>
 
                 <div class="item-content">
                     <div class="item-content__heading">商品の情報</div>
                     <div class="item-category">
                         <p class="item-information__label">カテゴリー</p>
-                        <p class="item-information__category"></p>
+                        <p class="item-information__category">
+                            @foreach($product_category as $category)
+                                {{ $category->category_id }}
+                            @endforeach
+                        </p>
                     </div>
 
                     <div class="item-category">

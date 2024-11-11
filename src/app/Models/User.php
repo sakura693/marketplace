@@ -17,10 +17,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+     /*fillableにしないと値が書き換えられない！*/
     protected $fillable = [
         'name',
         'email',
         'password',
+        'image',
+        'postal_code',
+        'address',
+        'building',  
     ];
 
     /**

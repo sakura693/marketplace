@@ -23,7 +23,8 @@
 <div class="content-form">
     <h2 class="content-heading">プロフィール設定</h2>
 
-    <form class="profile-form" action="" method="post">
+    <form class="profile-form" action="/" method="post" enctype="multipart/form-data">
+        @method('PATCH')
         @csrf
         <!--⇩画像を挿入する場所作成-->
         <div class="form__group img-group">
@@ -33,7 +34,9 @@
                 <label class="img-label" for="img">画像を選択する</label>
             </div>
             <div class="form__error">
-                <!--エラーの記述-->
+                @error('image')
+                {{ $message }}
+                @enderror
             </div>
         </div>
 
@@ -43,7 +46,9 @@
                 <input class="text-input" type="text" name="name" value="{{ old('name') }}">
             </div>
             <div class="form__error">
-                <!--エラーの記述-->
+                @error('name')
+                {{ $message }}
+                @enderror
             </div>
         </div>
 
@@ -53,7 +58,9 @@
                 <input class="text-input" type="text" name="postal_code" value="{{ old('postal_code') }}">
             </div>
             <div class="form__error">
-                <!--エラーの記述-->
+                @error('postal_code')
+                {{ $message }}
+                @enderror
             </div>
         </div>
 
@@ -63,7 +70,9 @@
                 <input class="text-input"  type="text" name="address" value="{{ old('address') }}">
             </div>
             <div class="form__error">
-                <!--エラーの記述-->
+                @error('address')
+                {{ $message }}
+                @enderror
             </div>
         </div>
 
@@ -72,9 +81,10 @@
             <div class="form__group-title">建物</div>
             <div class="form__group-content">
                 <input class="text-input" type="text" name="building" value="{{ old('building') }}">
-                </input>
             <div class="form__error">
-                <!--エラーの記述-->
+                @error('building')
+                {{ $message }}
+                @enderror
             </div>
         </div>
 

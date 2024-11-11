@@ -15,8 +15,11 @@
         @csrf
         <input class="logout-btn" type="submit" value="ログアウト">
     </form>
-    <a class="mypage-btn" href="">マイページ</a>
+
+    <!--認証済みのユーザのみマイページにアクセス可能で、それ以外はクリックしても飛べない-->
+    <a class="mypage-btn" href="/mypage">マイページ</a>
     <a class="sell-btn" href="/sell">出品</a>
+    
 </div>
 @endsection
 
@@ -26,7 +29,7 @@
 <div class="content-form">
     <!--ログイン後の出力画面（仮）-->
     @if (Auth::check())
-    <p>ああああ</p>
+    <p>ログインできてるよ</p>
     @endif
 
     <div class="item-form">
@@ -43,10 +46,10 @@
             <div class="item-cards">
                 @foreach($items as $item) <!--コントローラで定義する-->
                 <!--仮のパス-->
-                <a class="item-card__inner" href="/item/:{{$item->id}}">
+                <a class="item-card__inner" href="/item/{{$item->id}}">
                     <div class="item-card">
                         <div class="item-card__img-wrapper">
-                            <img class="item-card__img" src="{{ asset('$item->image') }}" alt="{{ $item->name }}">
+                            <img class="item-card__img" src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                         </div>
                         <div class="item-label">
                             <p class="item-name">{{ $item->name }}</p>
