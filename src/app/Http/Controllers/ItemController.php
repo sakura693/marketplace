@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\CommentRequest;
 use App\Models\User; /*追加*/
 use App\Models\Status; /*追加*/
 use App\Models\Category; /*追加*/
 use App\Models\PaymentMethod; /*追加*/
 use App\Models\Item; /*追加*/
 use App\Models\ProductCategory; /*追加*/
-
+use App\Models\ProductStatus; /*追加*/
+use App\Models\Comment; /*追加*/
 
 
 class ItemController extends Controller
@@ -23,16 +25,30 @@ class ItemController extends Controller
         return view('item', compact('items'));
     }
 
-    /*（仮）商品詳細画面を出力*/
+    /*商品詳細画面を出力*/
     public function show($item_id){
-        $item = Item::findOrFail($item_id);
-        $product_category = ProductCategory::where('item_id', $item_id)->get();
-         /*product_categoriesテーブルの中で、カラム名がitem_idであり、その値が$item_idと等しいレコードを取得する。
-         item_id：データベースのカラム名
-         $item_id：コントローラーのメソッドで引数として渡される変数。渡された特定のアイテムIDの値が入ってる。*/
+        /*distinctでカテゴリの重複を排除*/
+       $item = Item::with(['categories' => function($query){
+        $query->distinct();
+       }, 'statuses'])->findOrFail($item_id);
 
-        return view('detail', compact('item', 'product_category'));
+       /*コメント数を表示*/
+       $comments = Comment::where('item_id', $item->id)->get();
+       $commentCount = $comments->count();
+
+       return view('detail', compact('item', 'commentCount'));
     }
+
+    /*コメントを保存*/
+    public function store(CommentRequest $request, $item_id){
+        Comment::create([
+            'user_id' => auth()->id(),
+            'item_id' => $item_id,
+            'comment' => $request->comment,
+        ]);
+        return back(); /*元のページに戻る*/
+    }
+
 
     
     /*（仮）マイページ（プロフィール画面）*/

@@ -13,4 +13,10 @@ class Item extends Model
     public function categories(){
         return $this->belongsToMany(Category::class, 'product_categories', 'item_id', 'category_id');
     }
+
+    /*statusesテーブルと関連付けている*/
+    public function statuses(){
+        return $this->belongsToMany(Status::class, 'product_statuses', 'item_id', 'status_id');
+    }
 }
+

@@ -26,6 +26,8 @@ Route::get('/', [ItemController::class, 'index']);
 /*商品詳細画面を取得*/
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
+
+/*認証済みユーザのみができること*/
 Route::middleware('auth')->group(function () {
     /*（仮）プロフィール画面を取得*/
     Route::get('/mypage', [ProfileController::class, 'mypage']);
@@ -36,7 +38,8 @@ Route::middleware('auth')->group(function () {
     /*（（仮））商品購入画面を取得*/
     Route::get('/purchase', [ItemController::class, 'purchase']);
 
-    
+    Route::post('/item/{item_id}', [ItemController::class, 'store']);
+
 });
 
 

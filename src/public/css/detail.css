@@ -15,7 +15,7 @@
     margin-top: 10px;
 }
 
-.form__group{
+.item-information{
     margin-left: 20px;
 }
 
@@ -57,6 +57,32 @@
     margin-bottom: 10px;
 }
 
+.item-category {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.item-information__label {
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.category{
+    border: 1px solid rgb(223, 223, 223);
+    background: rgb(223, 223, 223);
+    border-radius: 50px;
+    font-size: 13px;
+    padding: 1px 15px;
+}
+
+.item-information__status{
+    font-size: 13px;
+}
+
+.item-comment{
+    margin-left: 20px;
+}
+
 .comment__heading{
     color: gray;
     font-weight: bold;
@@ -73,8 +99,28 @@
 }
 
 .comment-inner{
-    background: rgb(211, 211, 211);
+    background: rgb(223, 223, 223);
     padding: 5px 0;
     font-size: 12px;
     margin: 5px 0 20px 0;
+}
+
+/*アイコン*/
+.icon-inner{
+    margin: 5px 0;
+}
+
+.icon__star{
+    display: inline-block;
+    margin: 0 30px;
+}
+
+.icon__speech-bubble{
+    display: inline-block;
+}
+
+.comment-count{
+    margin-left: 6px;
+    margin-top: -4px;
+    font-size: 12px;
 }
