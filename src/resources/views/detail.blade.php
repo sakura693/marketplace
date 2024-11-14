@@ -37,8 +37,7 @@
         </div>
 
         <div class="item-detail">
-            <form class="item-information" action="/purchase/{{ $item->id }}" method="post">
-                @csrf
+            <div class="item-information">
                 <div class="item-content__inner">
                     <p class="item-content__name">{{ $item->name }}</p>
                     <p class="item-content__brand">ブランド名</p>
@@ -47,22 +46,34 @@
                     <div class="icon-inner">
                         <!--星アイコン-->
                         <div class="icon__star">
-                            <i class="fa-regular fa-star fa-lg" style="color: #5d5b5b;"></i>
+                            <form class="like-form" action="{{ route('like.toggle', ['item_id' => $item->id]) }}" method="post">
+                                @csrf
+                                <button class="like-btn" type="submit">
+                                    @if($isLikedByUser)
+                                        <!--いいねされた状態-->
+                                        <i class="fa-solid fa-star fa-lg" style="color: #FFD43B;"></i>
+                                    @else
+                                        <!--いいねされていない状態-->
+                                        <i class="fa-regular fa-star fa-lg" style="color: #5d5b5b;"></i>
+                                    @endif
+                                </button>
+                            </form>
 
                             <!--いいね数表示-->
-                            <p class="like-count"></p>
+                            <p class="like-count">{{ $likeCount}}</p>
                         </div>
 
                         <!--吹き出しアイコン（Font Awesomより）-->
                         <div class="icon__speech-bubble">
                             <i class="fa-regular fa-comment fa-lg" style="color: #5d5b5b;"></i>
-
+                            
                             <!--コメント数表示-->
                             <p class="comment-count">{{ $commentCount }}</p>
                         </div>
                     </div>
 
-                    <a class="item-btn btn" href="/purchase">購入手続きへ</a>
+                    <!--inputにしたほうがいいかも-->
+                    <a class="item-btn btn" href="/purchase/{{ $item->id }}">購入手続きへ</a>
 
 
                     <div class="item-content">
@@ -84,27 +95,32 @@
                         <div class="item-category">
                             <p class="item-information__label">商品の状態</p>
                             <p class="item-information__status">
-                                @foreach($item->statuses as $status)
-                                {{ $status->status }}
-                                @endforeach
+                                {{ $item->status->status }}
                             </p>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
 
             <form class="item-comment" action="/item/{{ $item->id }}" method="post">
                 @csrf
                 <div class="item-content">
                     <div class="comment__heading">コメント（{{ $commentCount }}）
                     </div>
-                    <div class="comment-user">ユーザー</div>
-                    <div class="comment-inner">
-                        <p class="comment-content">こちらにコメントが入ります</p>
+                    @foreach($comments as $comment)
+                    <div class="comment_inner">
+                        <div class="comment"></div>
+                        <div class="comment-user">
+                        <p>{{ $comment->user->name}}</p>
+                        </div>
                     </div>
+                    <div class="comment-content__inner">
+                        <p class="comment-content">{{ $comment->comment }}</p>
+                    </div>
+                    @endforeach
                     <div class="commeny-input">
                         <div class="comment-input__label">商品へのコメント</div>
-                        <textarea class="comment-input_content" name="comment" cols="50" rows="10"></textarea>
+                        <textarea class="comment-input_content" name="comment" cols="65" rows="10"></textarea>
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input class="item-btn btn" type="submit" value="コメントを送信する">
                     </div>

@@ -43,7 +43,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'name' => '革靴',
-            'status_id' => '12',
+            'status_id' => '4',
             'price' => (int)str_replace(',', '', '4,000'),
             'image' => 'storage/image/leather shoes.jpg',
             'description' => 'クラシックなデザインの革靴'
@@ -52,7 +52,7 @@ class ItemsTableSeeder extends Seeder
         
         $param = [
             'name' => 'ノートPC',
-            'status_id' => '1',
+            'status_id' => '5',
             'price' => (int)str_replace(',', '', '45,000'),
             'image' => 'storage/image/PC.jpg',
             'description' => '高性能なノートパソコン'
@@ -61,7 +61,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'name' => 'マイク',
-            'status_id' => '10',
+            'status_id' => '6',
             'price' => (int)str_replace(',', '', '8,000'),
             'image' => 'storage/image/microphone.jpg',
             'description' => '高音質のレコーディング用マイク'
@@ -70,7 +70,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'name' => 'ショルダーバッグ',
-            'status_id' => '11',
+            'status_id' => '7',
             'price' => (int)str_replace(',', '', '3,500'),
             'image' => 'storage/image/shoulder bag.jpg',
             'description' => 'おしゃれなショルダーバッグ'
@@ -79,7 +79,7 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'name' => 'タンブラー',
-            'status_id' => '12',
+            'status_id' => '8',
             'price' => (int)str_replace(',', '', '500'),
             'image' => 'storage/image/tumbler.jpg',
             'description' => '使いやすいタンブラー'
@@ -97,7 +97,7 @@ class ItemsTableSeeder extends Seeder
         
         $param = [
             'name' => 'メイクセット',
-            'status_id' => '10',
+            'status_id' => '2',
             'price' => (int)str_replace(',', '', '2,500'),
             'image' => 'storage/image/make-up set.jpg',
             'description' => '便利なメイクアップセット'

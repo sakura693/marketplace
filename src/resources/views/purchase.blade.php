@@ -28,15 +28,15 @@
     <p>ログインできてるよ</p>
     @endif
 
-    <form class="purchase-form" action="" method="">
+    <div class="purchase-form">
         <div class="purchase-content__inner">
             <div class="purchase-content item-content">
                 <div class="image-inner">
-                    <div class="image">商品画像</div>
+                    <img class="image" src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                 </div>
                 <div class="item-detail">
-                    <p class="item-name">商品名</p>
-                    <p class="item-price"><span class="yen-mark">￥</span>47,000</p>
+                    <p class="item-name">{{ $item->name }}</p>
+                    <p class="item-price"><span class="yen-mark">￥</span>{{ $item->price }}</p>
                 </div>
             </div>
 
@@ -68,14 +68,14 @@
         <div class="check-inner">
             <div class="check-content__price">
                 <p class="check-content__label">商品代金</p>
-                <p class="check-content__input">￥47,000</p>
+                <p class="check-content__input">￥{{ $item->price }}</p>
             </div>
             <div class="check-content__payment">
                 <p class="check-content__label">支払い方法</p>
-                <p class="check-content__input">コンビニ払い</p>
+                <p class="check-content__input">???</p>
             </div>
             <input class="purchase-btn btn" type="submit" value="購入する">
         </div>
-    </form>
+    </div>
 </div>
 @endsection

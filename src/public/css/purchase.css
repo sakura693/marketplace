@@ -31,6 +31,10 @@
     align-content: center;
 }
 
+.image{
+    width: 100%;
+}
+
 .item-name{
     font-size: 15px;
     font-weight: bold;

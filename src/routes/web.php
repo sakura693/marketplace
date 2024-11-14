@@ -36,9 +36,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/sell', [ItemController::class, 'sell']);
 
     /*（（仮））商品購入画面を取得*/
-    Route::get('/purchase', [ItemController::class, 'purchase']);
+    Route::get('/purchase/{item_id}', [ItemController::class, 'purchase']);
 
+    /*コメントを保存*/
     Route::post('/item/{item_id}', [ItemController::class, 'store']);
+    
+    /*（仮）いいねしたり解除したらホームに戻る*/
+    Route::post('/item/{item_id}/like', [ItemController::class, 'toggleLike'])->name('like.toggle');
 
 });
 

@@ -14,4 +14,9 @@ class Comment extends Model
         'item_id',
         'comment' 
     ];
+
+    /*Userモデルと関連付ける（commentsテーブルはuser_id〈外部キー〉を持つから）*/
+    public function user(){
+        return $this ->belongsTo(User::class);
+    }
 }

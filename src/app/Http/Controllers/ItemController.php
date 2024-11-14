@@ -14,6 +14,7 @@ use App\Models\Item; /*追加*/
 use App\Models\ProductCategory; /*追加*/
 use App\Models\ProductStatus; /*追加*/
 use App\Models\Comment; /*追加*/
+use App\Models\Like; /*追加*/
 
 
 class ItemController extends Controller
@@ -30,13 +31,19 @@ class ItemController extends Controller
         /*distinctでカテゴリの重複を排除*/
        $item = Item::with(['categories' => function($query){
         $query->distinct();
-       }, 'statuses'])->findOrFail($item_id);
+       }, 'status'])->findOrFail($item_id);
 
        /*コメント数を表示*/
-       $comments = Comment::where('item_id', $item->id)->get();
+       $comments = Comment::with('user')->where('item_id', $item->id)->get();
        $commentCount = $comments->count();
 
-       return view('detail', compact('item', 'commentCount'));
+       /*よう分らん笑*/
+       $isLikedByUser = Like::where('user_id', auth()->user()->id)->where('item_id', $item->id)->exists();
+
+       /*いいね数を表示*/
+       $likeCount = $item->likes()->count();
+
+       return view('detail', compact('item', 'comments', 'commentCount', 'isLikedByUser', 'likeCount'));
     }
 
     /*コメントを保存*/
@@ -48,6 +55,37 @@ class ItemController extends Controller
         ]);
         return back(); /*元のページに戻る*/
     }
+
+
+    /*（仮）商品購入画面を出力*/
+    public function purchase($item_id){
+        $payment_methods = PaymentMethod::all();
+
+        $item = Item::select('name', 'image', 'price')->find($item_id);
+
+        return view('purchase', compact('payment_methods', 'item'));
+    }
+
+
+
+
+
+    /*（仮）いいね登録・解除*/
+    public function toggleLike($item_id){
+        $user = auth()->user();
+
+        $like = Like::where('user_id', $user->id)->where('item_id', $item_id)->first();
+        if ($like){
+            $like->delete(); /*既にいいねがあるなら削除*/
+        }else{ /*いいねない場合は新規作成*/
+            Like::create([
+                'user_id' => $user->id,
+                'item_id' => $item_id,
+            ]);
+        }
+        return back();
+    }
+
 
 
     
@@ -66,13 +104,7 @@ class ItemController extends Controller
         return view('sell', compact('statuses', 'categories'));
     }
 
-    /*（仮）商品購入画面を出力*/
-    public function purchase(){
-        $payment_methods = PaymentMethod::all();
-        return view('purchase', compact('payment_methods'));
-    }
-
-     /*（仮）商品購入画面を出力*/
+     /*（仮）プロフィール編集画面を出力*/
     public function address(){
         return view('address');
     }
