@@ -12,14 +12,7 @@ use Illuminate\Support\Facades\Auth; /*追加*/
 
 class ProfileController extends Controller
 {
-    /*（仮）マイページを取得*/
-    public function mypage(){
-        $items = Item::all();
-        return view('profile', compact('items'));
-    }
-
-
-    /*（仮）プロフィールを保存*/
+    /*プロフィールを更新（住所など）*/
     public function update(ProfileRequest $request){
         $profiles = $request->all();
         if ($request->hasFile('image')){
@@ -35,5 +28,19 @@ class ProfileController extends Controller
         $user->update($profiles);
 
         return redirect('/login');
+    }
+
+
+    /*（仮）住所編集画面を出力*/
+    public function address(){
+        return view('address');
+    }
+
+
+
+    /*（仮）マイページを取得*/
+    public function mypage(){
+        $items = Item::all();
+        return view('profile', compact('items'));
     }
 }

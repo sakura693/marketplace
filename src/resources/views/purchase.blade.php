@@ -57,10 +57,13 @@
             <div class="purchase-content">
                 <div class="purchase-content__upper">
                     <p class="address__label">配送先</p>
-                    <a class="edit-addres__link" href="/mypage/profile">変更する</a>
+                    
+                    <!--仮⇩-->
+                    <a class="edit-addres__link" href="/">変更する</a>
                 </div>
                 <div class="purchase-content__main">
-                    <p class="address">ここに住所が入ります</p>
+                    <p class="postal-code">〒 {{ $user->postal_code }}</p>
+                    <p class="address">{{ $user->address }}{{ $user->building }}</p>
                 </div>
             </div>
         </div>

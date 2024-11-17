@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\CommentRequest;
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\User; /*追加*/
 use App\Models\Status; /*追加*/
 use App\Models\Category; /*追加*/
@@ -37,9 +38,16 @@ class ItemController extends Controller
        $comments = Comment::with('user')->where('item_id', $item->id)->get();
        $commentCount = $comments->count();
 
-       /*よう分らん笑*/
-       $isLikedByUser = Like::where('user_id', auth()->user()->id)->where('item_id', $item->id)->exists();
+      /*いいね閲覧機能⇩*/ 
+       /*ログインしていないユーザもいいね数を閲覧できる*/
+       $isLikedByUser = false;
 
+       /*ログインしてるユーザーが既にいいねをしているか調べる*/
+       if(auth()->check()){
+            $isLikedByUser = Like::where('user_id', auth()->user()->id)->where('item_id', $item->id)->exists();
+
+       }
+       
        /*いいね数を表示*/
        $likeCount = $item->likes()->count();
 
@@ -56,21 +64,7 @@ class ItemController extends Controller
         return back(); /*元のページに戻る*/
     }
 
-
-    /*（仮）商品購入画面を出力*/
-    public function purchase($item_id){
-        $payment_methods = PaymentMethod::all();
-
-        $item = Item::select('name', 'image', 'price')->find($item_id);
-
-        return view('purchase', compact('payment_methods', 'item'));
-    }
-
-
-
-
-
-    /*（仮）いいね登録・解除*/
+    /*いいね登録・解除*/
     public function toggleLike($item_id){
         $user = auth()->user();
 
@@ -86,30 +80,68 @@ class ItemController extends Controller
         return back();
     }
 
+    /*商品出品画面を出力*/
+    public function sell(){
+        /*unique('カラム名')で重複を排除*/
+        $categories = Category::all()->unique('category');
+        $statuses = Status::all();
+        return view('sell', compact('statuses', 'categories'));
+    }
+
+
+    /*商品登録*/
+    public function register(ExhibitionRequest $request){
+        $items = $request->except(['_token', 'category']); /*$request->all()だったけどエラー出るから変更*/
+
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('image', 'public');
+
+            $urlPath = str_replace('public/', '', $path);
+            $urlPath = 'storage/' . $urlPath;
+
+            $items['image'] = $urlPath;
+        }
+
+        $item = Item::create($items);
+        
+        $categories = $request->input('category');
+        $item->categories()->sync($categories);/*ItemモデルとCategoryモデル(多対多〈belongsToMany〉) を同期する。
+        $item: itemモデル
+        categories: itemモデルに定義されたリレーション（itemモデルの下に書いたやつが複数形だから複数形なだけ）
+        sync($categories): 同期づけるメソッド（今回はcategoryモデルをitemモデルに同期づける）
+        */
+
+        return redirect('/');
+    }
+
+
+
+
+    /*（仮）商品購入画面を出力*/
+    public function purchase($item_id){
+        /*uniqueで重複を排除*/
+        $payment_methods = PaymentMethod::all()->unique('payment_method');
+
+        $item = Item::select('name', 'image', 'price')->find($item_id);
+
+        /*ログイン済みユーザの住所を取得*/
+        $user = auth()->user(['postal_code', 'address', 'building']);
+
+        return view('purchase', compact('payment_methods', 'item', 'user'));
+    }
+
 
 
     
+
+
+    
+
     /*（仮）マイページ（プロフィール画面）*/
     public function mypage(Request $request){
         dd('test');
         $user = $request->user();
         return view('profile', compact('user'));
     }
-
-
-    /*（仮）商品出品画面を出力*/
-    public function sell(){
-        $categories = Category::all();
-        $statuses = Status::all();
-        return view('sell', compact('statuses', 'categories'));
-    }
-
-     /*（仮）プロフィール編集画面を出力*/
-    public function address(){
-        return view('address');
-    }
-
-
-    
     
 }

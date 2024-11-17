@@ -26,9 +26,9 @@ class ExhibitionRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required|max:255',
-            'image' => 'required|mimes:jpeg,png',
-            'category' => 'required', /*categoryでいい？*/
-            'status' => 'required', /*statusでいい？*/
+            'image' => 'required|image|mimes:jpeg,png', 
+            'category' => 'required|array', /*arrayを追加*/ 
+            'status_id' => 'required', 
             'price' => 'required|numeric|min:0'
         ];
     }
@@ -44,6 +44,7 @@ class ExhibitionRequest extends FormRequest
             'price.required' => '商品価格を入力してください',
             'price.numeric' => '数値で入力してください',
             'price.min' => '0円以上で入力してください',
+            'status_id.required' => '商品の状態を入力してください',
         ];
     }
 }

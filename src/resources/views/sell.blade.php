@@ -30,17 +30,17 @@
 
     <h2 class="content-heading">商品の出品</h2>
 
-    <form class="sell-form" action="" method="">
+    <form class="sell-form" action="/" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form__group img-group">
             <div class="form__group-title">商品画像</div>
             <div class="form__group-content img-content">
-                <input class="text-input img-btn" type="file" name="image" id="img" value="{{ old('image') }}">
-                <label class="img-label" for="img">画像を選択する</label>
+                <input class="text-input img-btn" type="file" name="image" id="image">
+                <label class="img-label" for="image">画像を選択する</label>
             </div>
             <div class="form__error">
                 <p class="sell-form__error-message">
-                    @error('')
+                    @error('image')
                     {{ $message }}
                     @enderror
                 </p>
@@ -57,7 +57,8 @@
                     <div class="category-content">
                         @foreach($categories as $category)
                         <div class="categoryies">
-                            <input class="category-btn" type="radio" name="category" id="category_{{ $category->id }}" value="{{ $category->id }}">
+                            <!--checkboxで複数選択可能-->
+                            <input class="category-btn" type="checkbox" name="category[]" id="category_{{ $category->id }}" value="{{ $category->id }}" {{ old('category') && in_array($category->id, old('category')) ? 'checked' : '' }}>
                             <label class="category-name" for="category_{{ $category->id }}">{{ $category->category}}</label>
                         </div>
                         @endforeach
@@ -65,7 +66,7 @@
                 </div>
                 <div class="form__error">
                     <p class="sell-form__error-message">
-                        @error('')
+                        @error('category')
                         {{ $message }}
                         @enderror
                     </p>
@@ -76,18 +77,18 @@
                 <div class="form__group-title">商品の状態</div>
                 <div class="form__group-content select-content">
                     <div class="select-box-wrapper">
-                        <select class="select-box">
+                        <select class="select-box" name="status_id">
                             <option disabled selected>選択してください</option>
                             <!--statusesテーブルから１つずつ取り出して出力-->
                             @foreach($statuses as $status)
-                            <option value="{{ $status->id }}" {{ old('status_id')==$status->id ? 'selected' : ''}}>{{ $status->status }}</option>
+                            <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : ''}}>{{ $status->status }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="form__error">
                     <p class="sell-form__error-message">
-                        @error('')
+                        @error('status_id')
                         {{ $message }}
                         @enderror
                     </p>
@@ -119,11 +120,11 @@
             <div class="form__group">
                 <div class="form__group-title">商品の説明</div>
                 <div class="form__group-content">
-                    <textarea class="text-input textarea-box"  name="description" rows="5" value="{{ old('description') }}"></textarea>
+                    <textarea class="text-input textarea-box"  name="description" rows="5">{{ old('description') }}</textarea>
                 </div>
                 <div class="form__error">
                     <p class="sell-form__error-message">
-                        @error('email')
+                        @error('description')
                         {{ $message }}
                         @enderror
                     </p>
@@ -133,11 +134,11 @@
             <div class="form__group">
                 <div class="form__group-title">販売価格</div>
                 <div class="form__group-content">
-                    <input class="text-input"  type="text" name="selling-price" value="{{ old('selling-price') }}" placeholder="￥">
+                    <input class="text-input" type="text" name="price" value="{{ old('price') }}" placeholder="￥">
                 </div>
                 <div class="form__error">
                     <p class="sell-form__error-message">
-                        @error('password')
+                        @error('price')
                         {{ $message }}
                         @enderror
                     </p>
@@ -146,8 +147,7 @@
         </div>
 
         <div class="form__button">
-            <!--仮（inputでボタン作る？？）-->
-            <in class="sell-btn btn">出品する</in>
+            <input class="sell-btn btn" type="submit" value="出品する">
         </div>
     </form>
 </div>

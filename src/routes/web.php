@@ -41,23 +41,28 @@ Route::middleware('auth')->group(function () {
     /*コメントを保存*/
     Route::post('/item/{item_id}', [ItemController::class, 'store']);
     
-    /*（仮）いいねしたり解除したらホームに戻る*/
+    /*いいねしたり解除したらホームに戻る*/
     Route::post('/item/{item_id}/like', [ItemController::class, 'toggleLike'])->name('like.toggle');
+
+    /*商品を登録*/
+    Route::post('/', [ItemController::class, 'register']);
+
 
 });
 
+/*（仮）住所変更画面を取得*/
+Route::get('/purchase/address', [ProfileController::class, 'address'])->withoutMiddleware('auth');
 
 
 
 /*（仮）プロフィール編集画面を取得*/
 Route::get('/mypage/profile', [RegisterController::class, 'profile']);
 
-/*（仮）patchメソッド*/
+/*（仮）プロフィールを保存*/
 Route::patch('/', [ProfileController::class, 'update']);
 
 
 
 
-/*（（仮））商品購入画面を取得*/
-Route::get('/purchase/address', [ItemController::class, 'address']);
+
 

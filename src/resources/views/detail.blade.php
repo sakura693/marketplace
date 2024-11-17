@@ -72,7 +72,6 @@
                         </div>
                     </div>
 
-                    <!--inputにしたほうがいいかも-->
                     <a class="item-btn btn" href="/purchase/{{ $item->id }}">購入手続きへ</a>
 
 
