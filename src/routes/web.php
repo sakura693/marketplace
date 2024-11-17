@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
 });
 
 /*（仮）住所変更画面を取得*/
-Route::get('/purchase/address', [ProfileController::class, 'address'])->withoutMiddleware('auth');
+Route::get('/purchase/address', [ProfileController::class, 'address']);
 
 
 
