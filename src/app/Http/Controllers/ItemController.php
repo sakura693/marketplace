@@ -22,8 +22,18 @@ class ItemController extends Controller
 {
     
      /*商品一覧画面を出力*/
-    public function index(){
-        $items = Item::all();
+    public function index(Request $request){
+       
+        /*クエリを取得*/
+        $page = $request->query('page');
+
+        if ($page === 'mylist'){
+            $user = $request->user();
+            $likedItemIds = Like::where('user_id', $user->id)->pluck('item_id');
+            $items = Item::whereIn('id', $likedItemIds)->get();
+        }else{
+            $items = Item::all();
+        }
         return view('item', compact('items'));
     }
 
@@ -116,6 +126,7 @@ class ItemController extends Controller
 
 
 
+    
 
     /*（仮）商品購入画面を出力*/
     public function purchase($item_id){
@@ -131,17 +142,6 @@ class ItemController extends Controller
     }
 
 
-
     
-
-
-    
-
-    /*（仮）マイページ（プロフィール画面）*/
-    public function mypage(Request $request){
-        dd('test');
-        $user = $request->user();
-        return view('profile', compact('user'));
-    }
     
 }

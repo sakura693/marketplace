@@ -32,11 +32,11 @@
     <p>ログインできてるよ</p>
     @endif
 
-    <div class="item-form">
+    <div class="item-form__btn-inner">
         <!--aタグのがいいの？-->
         <div class="label-inner">
-            <div class="recomend-label">おすすめ</div>
-            <div class="mylist-label">マイリスト</div>
+            <a class="recomend-label" href="/">おすすめ</a>
+            <a class="mylist-label" href="/?page=mylist">マイリスト</a>
         </div>
     </div>
     
@@ -45,7 +45,6 @@
             @csrf
             <div class="item-cards">
                 @foreach($items as $item) <!--コントローラで定義する-->
-                <!--仮のパス-->
                 <a class="item-card__inner" href="/item/{{$item->id}}">
                     <div class="item-card">
                         <div class="item-card__img-wrapper">

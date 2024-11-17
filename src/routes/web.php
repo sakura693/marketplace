@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
     /*商品を登録*/
     Route::post('/', [ItemController::class, 'register']);
 
+    /*プロフィール編集画面をマイページから取得*/
+    Route::get('/mypage/profile', [ProfileController::class, 'editProfile']);
+
+    /*プロフィールを保存*/
+    Route::patch('/', [ProfileController::class, 'profileUpdate']);
 
 });
 
@@ -55,12 +60,11 @@ Route::get('/purchase/address', [ProfileController::class, 'address'])->withoutM
 
 
 
-/*（仮）プロフィール編集画面を取得*/
-Route::get('/mypage/profile', [RegisterController::class, 'profile']);
+/*（仮）プロフィール編集画面を取得
+Route::get('/mypage/profile', [RegisterController::class, 'profile']);*/
 
-/*（仮）プロフィールを保存*/
-Route::patch('/', [ProfileController::class, 'update']);
-
+/*（仮）プロフィールを保存
+Route::patch('/', [ProfileController::class, 'update']);*/
 
 
 

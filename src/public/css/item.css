@@ -2,8 +2,8 @@
     width: 100%;
 }
 
-.item-form{
-    border-bottom: 2px solid gray;
+.item-form__btn-inner{
+    border-bottom: 1.5px solid gray;
     margin-top: 40px;
 }
 
@@ -15,11 +15,14 @@
 
 .recomend-label{
     font-weight: bold;
+    color: black;
+    text-decoration: none;
 }
 
 .mylist-label{
     color: red;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .item-card__inner{

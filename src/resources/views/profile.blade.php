@@ -34,9 +34,8 @@
         <div class="profile-content__inner">
             <div class="profile-img"></div>
             <div class="text">
-                <p class="user-name">{{ $user->name ?? 'guest'}}</p>
+                <p class="user-name">{{ $user->name}}</p>
                 <div class="profile-label__container">
-                    <!--（仮）ユーザ情報を取得しなきゃいけない（formタグにしたほうがいい？？？）-->
                     <a class="profile-label" href="/mypage/profile">プロフィールを編集</a>
                 </div>
             </div>

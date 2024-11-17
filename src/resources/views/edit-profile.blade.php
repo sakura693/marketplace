@@ -43,7 +43,7 @@
         <div class="form__group">
             <div class="form__group-title">ユーザー名</div>
             <div class="form__group-content">
-                <input class="text-input" type="text" name="name" value="{{ old('name') }}">
+                <input class="text-input" type="text" name="name" value="{{ old('name', $user->name) }}">
             </div>
             <div class="form__error">
                 @error('name')
@@ -55,7 +55,7 @@
         <div class="form__group">
             <div class="form__group-title">郵便番号</div>
             <div class="form__group-content">
-                <input class="text-input" type="text" name="postal_code" value="{{ old('postal_code') }}">
+                <input class="text-input" type="text" name="postal_code" value="{{ old('postal_code', $user->postal_code) }}">
             </div>
             <div class="form__error">
                 @error('postal_code')
@@ -67,7 +67,7 @@
         <div class="form__group">
             <div class="form__group-title">住所</div>
             <div class="form__group-content">
-                <input class="text-input"  type="text" name="address" value="{{ old('address') }}">
+                <input class="text-input"  type="text" name="address" value="{{ old('address', $user->address) }}">
             </div>
             <div class="form__error">
                 @error('address')
@@ -80,7 +80,7 @@
         <div class="form__group">
             <div class="form__group-title">建物</div>
             <div class="form__group-content">
-                <input class="text-input" type="text" name="building" value="{{ old('building') }}">
+                <input class="text-input" type="text" name="building" value="{{ old('building', $user->building) }}">
             <div class="form__error">
                 @error('building')
                 {{ $message }}

@@ -38,9 +38,29 @@ class ProfileController extends Controller
 
 
 
-    /*（仮）マイページを取得*/
-    public function mypage(){
+    /*（仮）マイページ（プロフィール画面）を取得*/
+    public function mypage(Request $request){
         $items = Item::all();
-        return view('profile', compact('items'));
+        $user = $request->user();
+        return view('profile', compact('items', 'user'));
     }
+
+
+    /*マイページからプロフィール編集画面を取得*/
+    public function editProfile(Request $request){
+        $user = $request->user();
+        return view('edit-profile', compact('user'));
+    }
+
+
+
+    /*（仮）プロフィールを更新（マイページから）*/
+    public function profileUpdate(ProfileRequest $request){
+        $profiles = $request->all();
+        $user = Auth::user();
+        $user->update($profiles);
+        return redirect('/mypage');
+    }
+
+
 }
