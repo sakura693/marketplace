@@ -45,8 +45,8 @@
     <div class="item-form">
         <!--aタグのがいいの？-->
         <div class="label-inner">
-            <div class="recomend-label">出品した商品</div>
-            <div class="mylist-label">購入した商品</div>
+            <a class="sell-label" href="/mypage?page=sell">出品した商品</a>
+            <a class="buy-label" href="/mypage?page=buy">購入した商品</a>
         </div>
     </div>
     

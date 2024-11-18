@@ -38,10 +38,19 @@ class ProfileController extends Controller
 
 
 
-    /*（仮）マイページ（プロフィール画面）を取得*/
+    /*マイページ（プロフィール画面）を取得*/
     public function mypage(Request $request){
-        $items = Item::all();
+
+        /*クエリを取得*/
+        $page = $request->query('page');
         $user = $request->user();
+
+        if ($page === 'sell'){
+            $items = Item::where('user_id', $user->id)->get();
+        }else{
+            $items = Item::all();/*（（仮））*/
+        }
+        
         return view('profile', compact('items', 'user'));
     }
 
@@ -51,6 +60,7 @@ class ProfileController extends Controller
         $user = $request->user();
         return view('edit-profile', compact('user'));
     }
+
 
 
 

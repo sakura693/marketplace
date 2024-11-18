@@ -14,7 +14,8 @@ class Item extends Model
         'price',
         'image',
         'description',
-        'status_id'
+        'status_id',
+        'user_id'
     ];
 
     /*categoriesと関連付けてる（中間テーブルでつながれているテーブルのみにこのbelongsToManyを設定する）*/

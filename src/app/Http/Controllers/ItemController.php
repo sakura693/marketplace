@@ -103,6 +103,8 @@ class ItemController extends Controller
     public function register(ExhibitionRequest $request){
         $items = $request->except(['_token', 'category']); /*$request->all()だったけどエラー出るから変更*/
 
+        $items['user_id'] = auth()->id();
+
         if($request->hasFile('image')){
             $path = $request->file('image')->store('image', 'public');
 

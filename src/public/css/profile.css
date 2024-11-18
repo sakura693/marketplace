@@ -56,13 +56,15 @@
     margin-left: 150px;
 }
 
-.recomend-label {
-    font-weight: bold;
-}
-
-.mylist-label {
+.sell-label {
     color: red;
     font-weight: bold;
+    text-decoration: none;
+}
+
+.buy-label {
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .item-card__inner {
