@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
@@ -28,15 +30,18 @@
     <p>ログインできてるよ</p>
     @endif
 
-    <div class="purchase-form">
+    <form class="purchase-form" action="/mypage" method="post">
+        @csrf
         <div class="purchase-content__inner">
             <div class="purchase-content item-content">
                 <div class="image-inner">
                     <img class="image" src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                 </div>
                 <div class="item-detail">
-                    <p class="item-name">{{ $item->name }}</p>
+                    <p class="item-name">{{ $item->name }}</p>                   
                     <p class="item-price"><span class="yen-mark">￥</span>{{ $item->price }}</p>
+
+                    <input type="hidden" name="item_id" value="{{ $item->id }}">
                 </div>
             </div>
 
@@ -44,10 +49,11 @@
                 <p class="purchase-content__label">支払い方法</p>
                 <div class="purchase-content__main">
                     <div class="select-box-wrapper">
-                        <select class="select-box">
+                        <!--livewireを適用⇩(wire:model="selectedPaymentMethod")-->
+                        <select class="select-box" name="payment_method">
                             <option disabled selected>選択してください</option>
                             @foreach($payment_methods as $payment_method)
-                            <option value="{{ $payment_method->id }}" {{ old('payment_method_id')==$payment_method->id ? 'selected' : ''}}>{{ $payment_method->payment_method }}</option>
+                                <option value="{{ $payment_method->id }}" {{ old('payment_method_id')==$payment_method->id ? 'selected' : ''}}>{{ $payment_method->payment_method }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -75,10 +81,20 @@
             </div>
             <div class="check-content__payment">
                 <p class="check-content__label">支払い方法</p>
-                <p class="check-content__input">???</p>
+        
+                <!--支払方法が選択された場合に表示-->
+                <p class="check-content__input"> 
+                    
+                </p>
             </div>
             <input class="purchase-btn btn" type="submit" value="購入する">
         </div>
-    </div>
+
+
+
+
+       
+    </form>
 </div>
 @endsection
+

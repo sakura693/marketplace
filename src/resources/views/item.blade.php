@@ -52,6 +52,9 @@
                         </div>
                         <div class="item-label">
                             <p class="item-name">{{ $item->name }}</p>
+                            
+                            <!--もしitemのsoldカラムがtrueならsold、違うなら空-->
+                            <p class="sold-label">{{ $item->sold ? 'sold' : '' }}</p>
                         </div>
                     </div>
                 </a>

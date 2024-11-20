@@ -7,6 +7,7 @@ use App\Http\Requests\ProfileRequest; /*追加*/
 use App\Models\Profile; /*追加*/
 use App\Models\Item; /*追加*/
 use App\Models\User; /*追加*/
+use App\Models\Order; /*追加*/
 use Illuminate\Support\Facades\Auth; /*追加*/
 
 
@@ -45,10 +46,17 @@ class ProfileController extends Controller
         $page = $request->query('page');
         $user = $request->user();
 
+        /*itemsを定義*/
+        $items = collect(); // 初期値として空のコレクションを定義 
+
         if ($page === 'sell'){
             $items = Item::where('user_id', $user->id)->get();
-        }else{
-            $items = Item::all();/*（（仮））*/
+        }elseif ($page === 'buy'){
+            $orders = Order::with('item')->where('user_id', $user->id)->get();
+
+            $items = $orders->map(function ($order) {
+            return $order->item;
+            });
         }
         
         return view('profile', compact('items', 'user'));

@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
     /*プロフィールを保存*/
     Route::patch('/', [ProfileController::class, 'profileUpdate']);
 
+    /*（仮）商品注文*/
+    Route::post('/mypage', [ItemController::class, 'order']);
+
 });
 
 /*（仮）住所変更画面を取得*/

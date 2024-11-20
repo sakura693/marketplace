@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('image');
             $table->string('name');
             $table->integer('price');
+            $table->boolean('sold')->default(false);
             $table->text('description');
             $table->timestamps();
         });

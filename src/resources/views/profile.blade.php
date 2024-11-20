@@ -34,7 +34,7 @@
         <div class="profile-content__inner">
             <div class="profile-img"></div>
             <div class="text">
-                <p class="user-name">{{ $user->name}}</p>
+                <p class="user-name">{{ $user->name }}</p>
                 <div class="profile-label__container">
                     <a class="profile-label" href="/mypage/profile">プロフィールを編集</a>
                 </div>
@@ -51,7 +51,7 @@
     </div>
     
     <div class="item-card__inner">
-        <form class="item-form" action="" enctype="multipart/form-data">  <!--enctype必要？-->
+        <form class="item-form" action="" enctype="multipart/form-data">
             @csrf
             <div class="item-cards">
                 @foreach($items as $item) <!--コントローラで定義する-->

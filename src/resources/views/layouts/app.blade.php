@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COACHTECH</title>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+
+    <!-- LivewireStylesを挿入する場所(purchase.balde.php)-->
+    @yield('livewire-styles') 
+    
     @yield('css')
 </head>
 
@@ -19,6 +23,9 @@
             @yield('content')
         </div>
     </div>
+
+    <!-- LivewireScriptsを挿入する場所（purchase,blade.php） -->
+    @yield('livewire-scripts')
 </body>
 
 </html>

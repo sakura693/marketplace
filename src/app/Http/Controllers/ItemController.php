@@ -16,6 +16,7 @@ use App\Models\ProductCategory; /*追加*/
 use App\Models\ProductStatus; /*追加*/
 use App\Models\Comment; /*追加*/
 use App\Models\Like; /*追加*/
+use App\Models\Order; /*追加*/
 
 
 class ItemController extends Controller
@@ -132,15 +133,38 @@ class ItemController extends Controller
 
     /*（仮）商品購入画面を出力*/
     public function purchase($item_id){
-        /*uniqueで重複を排除*/
-        $payment_methods = PaymentMethod::all()->unique('payment_method');
 
-        $item = Item::select('name', 'image', 'price')->find($item_id);
+        $item = Item::select('id', 'name', 'image', 'price')->find($item_id);
 
         /*ログイン済みユーザの住所を取得*/
         $user = auth()->user(['postal_code', 'address', 'building']);
 
+        /*uniqueで重複を排除*/
+        $payment_methods = PaymentMethod::all()->unique('payment_method');
+
         return view('purchase', compact('payment_methods', 'item', 'user'));
+    }
+
+
+    /*（仮）商品を購入*/
+    public function order(Request $request){
+        $user = auth()->user();
+        $item_id = $request->input('item_id');        
+        $payment_method_id = $request->input('payment_method');
+
+        $item = Item::find($item_id);
+
+        Order::create([
+            'user_id' => $user->id,
+            'item_id' => $item_id,
+            'payment_method_id' => $payment_method_id,
+        ]);
+
+        /*商品を購入済みに更新*/
+        $item->sold = true; /*itemsテーブルのsoldカラムをfalse→true*/
+        $item->save();
+
+        return redirect('/mypage');
     }
 
 
