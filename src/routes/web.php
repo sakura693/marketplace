@@ -53,8 +53,11 @@ Route::middleware('auth')->group(function () {
     /*プロフィールを保存*/
     Route::patch('/', [ProfileController::class, 'profileUpdate']);
 
-    /*（仮）商品注文*/
+    /*商品注文*/
     Route::post('/mypage', [ItemController::class, 'order']);
+
+    /*（仮）商品検索*/
+    Route::get('/search', [ItemController::class, 'search']);
 
 });
 

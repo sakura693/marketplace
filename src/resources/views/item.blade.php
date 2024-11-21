@@ -6,9 +6,8 @@
 
 <!--header部分のリンク-->
 @section('link')
-<form class="search__form" action="">
-    @csrf
-    <input class="search__form-input" type="text" placeholder="なにをお探しですか？">
+<form class="search__form" action="/search" method="get">
+    <input class="search__form-input" type="text" name="keyword" placeholder="なにをお探しですか？">
 </form>
 <div class="header-btn">
     <form action="/logout" method="post">
@@ -41,8 +40,7 @@
     </div>
     
     <div class="item-card__inner">
-        <form class="item-form" action="" enctype="multipart/form-data">  <!--enctype必要？-->
-            @csrf
+        <div class="item-form" > 
             <div class="item-cards">
                 @foreach($items as $item) <!--コントローラで定義する-->
                 <a class="item-card__inner" href="/item/{{$item->id}}">
@@ -60,7 +58,7 @@
                 </a>
                 @endforeach
             </div>
-        </form>
+        </div>
     </div>
 </div>
 @endsection

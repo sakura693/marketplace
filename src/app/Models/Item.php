@@ -34,8 +34,13 @@ class Item extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function users(){
-        
+    
+    /*スコープ（キーワード検索機能）*/
+    public function scopeKeywordSearch($query, $keyword){
+        if(!empty($keyword)){
+            $query->where('name', 'like', '%' . $keyword . '%');
+        }
+        return $query;
     }
 }
 

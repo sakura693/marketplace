@@ -28,13 +28,25 @@ class ItemController extends Controller
         /*クエリを取得*/
         $page = $request->query('page');
 
+        /*マイリストの場合*/
         if ($page === 'mylist'){
             $user = $request->user();
             $likedItemIds = Like::where('user_id', $user->id)->pluck('item_id');
             $items = Item::whereIn('id', $likedItemIds)->get();
-        }else{
-            $items = Item::all();
+        }else /*おすすめの場合*/{
+
+            $user = $request->user();
+            
+            /*ユーザがログインしている場合*/
+            if ($user){
+                $items = Item::where(function ($query) use ($user) {
+                    $query->where('user_id', '!=', $user->id)->orWhereNull('user_id');
+                })->get();
+            }else /*ログインしていない場合*/{
+                $items = Item::all();
+            }
         }
+
         return view('item', compact('items'));
     }
 
@@ -127,26 +139,7 @@ class ItemController extends Controller
         return redirect('/');
     }
 
-
-
-    
-
-    /*（仮）商品購入画面を出力*/
-    public function purchase($item_id){
-
-        $item = Item::select('id', 'name', 'image', 'price')->find($item_id);
-
-        /*ログイン済みユーザの住所を取得*/
-        $user = auth()->user(['postal_code', 'address', 'building']);
-
-        /*uniqueで重複を排除*/
-        $payment_methods = PaymentMethod::all()->unique('payment_method');
-
-        return view('purchase', compact('payment_methods', 'item', 'user'));
-    }
-
-
-    /*（仮）商品を購入*/
+    /*商品を購入*/
     public function order(Request $request){
         $user = auth()->user();
         $item_id = $request->input('item_id');        
@@ -167,6 +160,33 @@ class ItemController extends Controller
         return redirect('/mypage');
     }
 
+    /*商品検索機能*/
+    public function search(Request $request){
+        $keyword = $request->input('keyword');
+        $items = Item::KeywordSearch($keyword)->get();  
+
+        return view('item', compact('items'));
+    }
+
+
+    
+
+    /*（仮）商品購入画面を出力*/
+    public function purchase($item_id){
+
+        $item = Item::select('id', 'name', 'image', 'price')->find($item_id);
+
+        /*ログイン済みユーザの住所を取得*/
+        $user = auth()->user(['postal_code', 'address', 'building']);
+
+        /*uniqueで重複を排除*/
+        $payment_methods = PaymentMethod::all()->unique('payment_method');
+
+        return view('purchase', compact('payment_methods', 'item', 'user'));
+    }
+
+
+    
 
     
     
