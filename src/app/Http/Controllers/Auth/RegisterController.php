@@ -5,12 +5,22 @@ namespace App\Http\Controllers\Auth; /*Authを追加*/
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use App\Http\Controllers\Controller; /*記述を追加*/
+use App\Http\Controllers\Controller; /*追加*/
+use App\Actions\Fortify\CreateNewUser; /*追加*/
+use Illuminate\Support\Facades\Auth; /*追加*/
 
 class RegisterController extends Controller
 {
-    /*（仮）プロフィール画面を出力*/
-    public function profile(){
-        return view('edit-profile');
+    protected $createNewUser;
+
+    public function __construct(CreateNewUser $createNewUser){
+        $this->createNewUser = $createNewUser;
+    }
+
+    public function register(Request $request){
+        $user = $this->createNewUser->create($request->all());
+
+        Auth::login($user);
+        return redirect('/mypage/profile');
     }
 }

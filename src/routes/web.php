@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use Laravel\Fortify\Fortify; /*追加*/
 use App\Http\Controllers\ProfileController; /*追加*/
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,16 @@ Route::get('/', [ItemController::class, 'index']);
 
 /*商品詳細画面を取得*/
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
+
+/*会員情報を保存*/
+Route::post('/register', [RegisterController::class, 'register']);
+
+/*ログイン*/
+Route::post('/login', [LoginController::class, 'store']);
+
+/*ログアウト*/
+Route::post('/logout', [LoginController::class, 'destroy']);
+
 
 
 /*認証済みユーザのみができること*/
@@ -53,17 +64,17 @@ Route::middleware('auth')->group(function () {
     /*商品を登録*/
     Route::post('/', [ItemController::class, 'register']);
 
-    /*プロフィール編集画面をマイページから取得*/
-    Route::get('/mypage/profile', [ProfileController::class, 'editProfile']);
-
-    /*プロフィールを保存*/
-    Route::patch('/', [ProfileController::class, 'profileUpdate']);
-
     /*商品注文*/
     Route::post('/mypage', [ItemController::class, 'order']);
 
     /*商品検索*/
     Route::get('/search', [ItemController::class, 'search']);
+
+    /*プロフィール編集画面を取得*/
+    Route::get('/mypage/profile', [ProfileController::class, 'editProfile']);
+
+    /*プロフィールを保存*/
+    Route::patch('/', [ProfileController::class, 'profileUpdate']);
 });
 
 

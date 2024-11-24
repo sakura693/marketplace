@@ -14,24 +14,6 @@ use Illuminate\Support\Facades\Auth; /*追加*/
 
 class ProfileController extends Controller
 {
-    /*プロフィールを更新（住所など）*/
-    public function update(ProfileRequest $request){
-        $profiles = $request->all();
-        if ($request->hasFile('image')){
-            $path = $request->file('image')->store('image', 'public');
-
-            $urlPath = str_replace('public/', $path);
-            $urlPath = 'storage/' . $urlPath;
-
-            $profiles['image'] = $urlPath;
-        }
-
-        $user = Auth::user();
-        $user->update($profiles);
-
-        return redirect('/login');
-    }
-
 
     /*住所編集画面を出力*/
     public function address($item_id){
@@ -40,7 +22,7 @@ class ProfileController extends Controller
         return view('address', compact('user', 'item'));
     }
 
-    /*（仮）住所の更新*/
+    /*住所の更新*/
     public function addressUpdate(AddressRequest $request, $item_id){
         $address = $request->all();
         $user = Auth::user();
@@ -77,18 +59,25 @@ class ProfileController extends Controller
     /*マイページからプロフィール編集画面を取得*/
     public function editProfile(Request $request){
         $user = $request->user();
+
         return view('edit-profile', compact('user'));
     }
-
-
-
 
     /*（仮）プロフィールを更新（マイページから）*/
     public function profileUpdate(ProfileRequest $request){
         $profiles = $request->all();
+        if ($request->hasFile('image')){
+            $path = $request->file('image')->store('image', 'public');
+
+            $urlPath = str_replace('public/', '', $path);
+            $urlPath = 'storage/' . $urlPath;
+
+            $profiles['image'] = $urlPath;
+        }
         $user = Auth::user();
         $user->update($profiles);
-        return redirect('/mypage');
+
+        return redirect('/');
     }
 
 

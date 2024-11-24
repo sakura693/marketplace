@@ -27,7 +27,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        /*カスタムバリデーションを適用*/
+        $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
     }
 
     /**
@@ -47,35 +48,6 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function(){
             return view('auth.login');
         });
-
-
-        /*リダイレクト先指定
-        Fortify::registered(function ($request, $user){
-            return redirect('/mypage/profile');
-        });*/
-
-        
-        /*Fortify::authenticateUsing(function (Request $request){
-            Log::info('Login attempt:', $request->all());
-            $loginRequest = new LoginRequest();
-            $loginRequest->merge($request->only('email', 'password', 'remember'));
-            
-            try{
-                $loginRequest->validateResolved();
-            } catch(\Illuminate\Validation\ValidationException $e){
-             Log::error('Validation failed:', $e->errors());
-             return null;
-             }         
-             
-            $credentials = $request->only('email','password');
-
-            if (Auth::attempt($credentials, $request->boolean('remember'))){
-                return Auth::user();
-            }
-            
-            return null;
-        });*/
-        
 
         /*特定のメールアドレスのユーザーが1分間に最大10回ログイン試行をできるよう制限する設定*/
         RateLimiter::for('login', function(Request $request){

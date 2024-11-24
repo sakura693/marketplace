@@ -173,7 +173,7 @@ class ItemController extends Controller
 
     
 
-    /*（仮）商品購入画面を出力*/
+    /*商品購入画面を出力*/
     public function purchase($item_id){
 
         $item = Item::select('id', 'name', 'image', 'price')->find($item_id);
