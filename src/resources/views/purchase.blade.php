@@ -65,7 +65,7 @@
                     <p class="address__label">配送先</p>
                     
                     <!--仮⇩-->
-                    <a class="edit-addres__link" href="/">変更する</a>
+                    <a class="edit-addres__link" href="/purchase/address/{{ $item->id }}">変更する</a>
                 </div>
                 <div class="purchase-content__main">
                     <p class="postal-code">〒 {{ $user->postal_code }}</p>

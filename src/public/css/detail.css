@@ -159,3 +159,8 @@
     margin-left: 10px;
 }
 
+.comment__error{
+    color: red;
+    margin-bottom: 30px;
+    margin-top: -25px;
+}

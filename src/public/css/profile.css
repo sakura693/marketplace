@@ -43,7 +43,7 @@
     width: 100%;
 }
 
-.item-form {
+.item-form__label {
     border-bottom: 2px solid gray;
     margin-top: 40px;
 }

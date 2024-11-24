@@ -27,22 +27,24 @@ class ItemController extends Controller
        
         /*クエリを取得*/
         $page = $request->query('page');
+        $user = $request->user();
 
         /*マイリストの場合*/
         if ($page === 'mylist'){
-            $user = $request->user();
-            $likedItemIds = Like::where('user_id', $user->id)->pluck('item_id');
-            $items = Item::whereIn('id', $likedItemIds)->get();
-        }else /*おすすめの場合*/{
-
-            $user = $request->user();
-            
             /*ユーザがログインしている場合*/
+            if($user){
+                $user = $request->user();
+                $likedItemIds = Like::where('user_id', $user->id)->pluck('item_id');
+                $items = Item::whereIn('id', $likedItemIds)->get();
+            }else /*ログインしていない場合*/{
+                $items = collect(); /*空*/
+            }
+        }else /*おすすめの場合*/{
             if ($user){
                 $items = Item::where(function ($query) use ($user) {
                     $query->where('user_id', '!=', $user->id)->orWhereNull('user_id');
                 })->get();
-            }else /*ログインしていない場合*/{
+            }else{
                 $items = Item::all();
             }
         }

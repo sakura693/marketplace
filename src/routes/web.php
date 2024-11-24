@@ -29,14 +29,20 @@ Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
 /*認証済みユーザのみができること*/
 Route::middleware('auth')->group(function () {
-    /*（仮）プロフィール画面を取得*/
+    /*プロフィール画面を取得*/
     Route::get('/mypage', [ProfileController::class, 'mypage']);
 
-    /*（仮）商品出品画面を取得*/
+    /*商品出品画面を取得*/
     Route::get('/sell', [ItemController::class, 'sell']);
 
-    /*（（仮））商品購入画面を取得*/
+    /*商品購入画面を取得*/
     Route::get('/purchase/{item_id}', [ItemController::class, 'purchase']);
+
+    /*住所変更画面を取得*/
+    Route::get('/purchase/address/{item_id}', [ProfileController::class, 'address']);
+
+    /*住所更新(postメソッドでこの⇩ルートにアクセスした時addressUpdateメソッドを実行する) */
+    Route::patch('/purchase/address/{item_id}/update', [ProfileController::class, 'addressUpdate']);
 
     /*コメントを保存*/
     Route::post('/item/{item_id}', [ItemController::class, 'store']);
@@ -56,13 +62,11 @@ Route::middleware('auth')->group(function () {
     /*商品注文*/
     Route::post('/mypage', [ItemController::class, 'order']);
 
-    /*（仮）商品検索*/
+    /*商品検索*/
     Route::get('/search', [ItemController::class, 'search']);
-
 });
 
-/*（仮）住所変更画面を取得*/
-Route::get('/purchase/address', [ProfileController::class, 'address']);
+
 
 
 

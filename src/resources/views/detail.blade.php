@@ -118,9 +118,18 @@
                     </div>
                     @endforeach
                     <div class="commeny-input">
-                        <div class="comment-input__label">商品へのコメント</div>
-                        <textarea class="comment-input_content" name="comment" cols="65" rows="10"></textarea>
-                        <input type="hidden" name="item_id" value="{{ $item->id }}">
+                        <div class="comment__inner">
+                            <div class="comment-input__label">商品へのコメント</div>
+                            <textarea class="comment-input_content" name="comment" cols="65" rows="10"></textarea>
+                            <input type="hidden" name="item_id" value="{{ $item->id }}">
+
+                            <div class="comment__error">
+                                @error('comment')
+                                {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+
                         <input class="item-btn btn" type="submit" value="コメントを送信する">
                     </div>
                 </div>

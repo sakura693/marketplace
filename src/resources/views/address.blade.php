@@ -15,19 +15,18 @@
         @csrf
         <input class="logout-btn" type="submit" value="ログアウト">
     </form>
-    <a class="mypage-btn" href="">マイページ</a>
-    <a class="sell-btn" href="">出品</a>
+    <a class="mypage-btn" href="/mypage">マイページ</a>
+    <a class="sell-btn" href="/sell">出品</a>
 </div>
 @endsection
-
-
 
 @section('content')
 <div class="content-form">
     <h2 class="content-heading">住所の変更</h2>
 
-    <form class="address-form" action="" method="post">
+    <form class="address-form" action="/purchase/address/{{$item->id}}/update" method="post">
         @csrf
+        @method('PATCH')
         <div class="form__group">
             <div class="form__group-title">郵便番号</div>
             <div class="form__group-content">
@@ -72,7 +71,7 @@
 
         <div class="form__button">
             <!--仮（inputでボタン作る？？）-->
-            <button class="address-btn btn">登録する</button>
+            <input class="address-btn btn" type="submit" value="登録する">
         </div>
     </form>
 </div>

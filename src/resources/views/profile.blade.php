@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div class="item-form">
+    <div class="item-form__label">
         <!--aタグのがいいの？-->
         <div class="label-inner">
             <a class="sell-label" href="/mypage?page=sell">出品した商品</a>
@@ -51,8 +51,7 @@
     </div>
     
     <div class="item-card__inner">
-        <form class="item-form" action="" enctype="multipart/form-data">
-            @csrf
+        <div class="item-form">
             <div class="item-cards">
                 @foreach($items as $item) <!--コントローラで定義する-->
                 <!--仮のパス-->
@@ -68,7 +67,7 @@
                 </a>
                 @endforeach
             </div>
-        </form>
+        </div>
     </div>
 </div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest; /*追加*/
+use App\Http\Requests\AddressRequest; /*追加*/
 use App\Models\Profile; /*追加*/
 use App\Models\Item; /*追加*/
 use App\Models\User; /*追加*/
@@ -32,9 +33,19 @@ class ProfileController extends Controller
     }
 
 
-    /*（仮）住所編集画面を出力*/
-    public function address(){
-        return view('address');
+    /*住所編集画面を出力*/
+    public function address($item_id){
+        $user = auth()->user();
+        $item = Item::find($item_id);
+        return view('address', compact('user', 'item'));
+    }
+
+    /*（仮）住所の更新*/
+    public function addressUpdate(AddressRequest $request, $item_id){
+        $address = $request->all();
+        $user = Auth::user();
+        $user->update($address);
+        return redirect('/purchase/' . $item_id);
     }
 
 
