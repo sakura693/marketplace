@@ -58,6 +58,13 @@
                         </select>
                     </div>
                 </div>
+                <div class="form__error">
+                <p class="purchase-form__error-message">
+                    @error('payment_method')
+                    {{ $message }}
+                    @enderror
+                </p>
+            </div>
             </div>
 
             <div class="purchase-content">

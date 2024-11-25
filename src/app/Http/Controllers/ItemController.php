@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\User; /*追加*/
 use App\Models\Status; /*追加*/
 use App\Models\Category; /*追加*/
@@ -142,7 +143,7 @@ class ItemController extends Controller
     }
 
     /*商品を購入*/
-    public function order(Request $request){
+    public function order(PurchaseRequest $request){
         $user = auth()->user();
         $item_id = $request->input('item_id');        
         $payment_method_id = $request->input('payment_method');

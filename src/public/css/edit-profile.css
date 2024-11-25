@@ -59,6 +59,12 @@
 .profile-img {
     width: 90px;
     height: 90px;
+    border-radius: 50%;
+}
+
+.non-profile-img {
+    width: 90px;
+    height: 90px;
     background-color: rgb(224, 224, 224);
     border-radius: 50%;
 }

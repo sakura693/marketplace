@@ -109,6 +109,18 @@
                     @foreach($comments as $comment)
                     <div class="comment_inner">
                         <div class="comment"></div>
+
+                        <!--写真-->
+                        @if ($comment->user->image !== null)
+                            <!--写真を表示-->
+                            <div class="profile-img__wrapper">
+                                <img class="profile-img" src="{{ asset( $comment->user->image )}}" alt="{{ $comment->user->name }}">
+                            </div>
+                        @else
+                            <!--写真がない場合-->            
+                            <div class="non-profile-img"></div>
+                        @endif
+
                         <div class="comment-user">
                         <p>{{ $comment->user->name}}</p>
                         </div>

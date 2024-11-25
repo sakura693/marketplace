@@ -127,3 +127,9 @@
 .purchase-btn{
     margin-top: 30px;
 }
+
+.purchase-form__error-message{
+    color: red;
+    margin-top: 5px;
+    margin-left: 70px;
+}

@@ -29,7 +29,18 @@
         <!--⇩画像を挿入する場所作成-->
         <div class="form__group img-group">
             <div class="img-content">
-                <div class="profile-img"></div>
+                <div class="profile-img__inner">
+                    @if ($user->image !== null)
+                        <!--写真を表示-->
+                        <div class="profile-img__wrapper">
+                            <img class="profile-img" src="{{ asset( $user->image )}}" alt="{{ $user->name }}">
+                        </div>
+                    @else
+                        <!--写真がない場合-->            
+                        <div class="non-profile-img"></div>
+                    @endif
+                </div>
+                
                 <input class="img-btn" type="file" name="image" id="img" value="{{ old('image') }}">
                 <label class="img-label" for="img">画像を選択する</label>
             </div>

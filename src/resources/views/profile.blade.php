@@ -32,7 +32,16 @@
 <!--プロフィール部分！！！！！！！-->
     <div class="profile-contnt">
         <div class="profile-content__inner">
-            <div class="profile-img"></div>
+            @if ($user->image !== null)
+                <!--写真を表示-->
+                <div class="profile-img__wrapper">
+                    <img class="profile-img" src="{{ asset( $user->image )}}" alt="{{ $user->name }}">
+                </div>
+            @else
+                <!--写真がない場合-->            
+                <div class="non-profile-img"></div>
+            @endif
+
             <div class="text">
                 <p class="user-name">{{ $user->name }}</p>
                 <div class="profile-label__container">

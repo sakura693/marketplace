@@ -64,7 +64,7 @@ class ProfileController extends Controller
     }
 
     /*（仮）プロフィールを更新（マイページから）*/
-    public function profileUpdate(ProfileRequest $request){
+    public function profileUpdate(AddressRequest $request){
         $profiles = $request->all();
         if ($request->hasFile('image')){
             $path = $request->file('image')->store('image', 'public');
