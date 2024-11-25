@@ -6,10 +6,10 @@
 
 <!--header部分のリンク-->
 @section('link')
-<form class="search__form" action="">
+<div class="search__form">
     @csrf
     <input class="search__form-input" type="text" placeholder="なにをお探しですか？">
-</form>
+</div>
 <div class="header-btn">
     <form action="/logout" method="post">
         @csrf
@@ -23,11 +23,6 @@
 
 @section('content')
 <div class="content-form">
-    <!--ログイン後の出力画面（仮）-->
-    @if (Auth::check())
-    <p>ログインできてるよ</p>
-    @endif
-
     <h2 class="content-heading">商品の出品</h2>
 
     <form class="sell-form" action="/" method="post" enctype="multipart/form-data">

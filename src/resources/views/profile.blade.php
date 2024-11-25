@@ -24,11 +24,6 @@
 
 @section('content')
 <div class="content-form">
-    <!--ログイン後の出力画面（仮）-->
-    @if (Auth::check())
-    <p>ログインできてるよ</p>
-    @endif
-
 <!--プロフィール部分！！！！！！！-->
     <div class="profile-contnt">
         <div class="profile-content__inner">

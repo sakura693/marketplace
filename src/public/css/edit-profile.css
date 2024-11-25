@@ -91,18 +91,9 @@
 }
 
 
-/*（仮）画面幅が850px以下のデバイス*/
+/*画面幅が850px以下のデバイス（タブレットなど）*/
 @media (max-width: 850px) {
-    .content-form {
-        width: 90%;
-        /* タブレット向けに幅を広げる(元は40%) */
-        padding: 10px;
-    }
-}
-
-/*画面幅が1400px以上のデバイス（PCなど）*/
-@media (min-width: 1400px) {
-    .content-form {
-        padding: 30px;
+    .text-input {
+        width: 100%;
     }
 }

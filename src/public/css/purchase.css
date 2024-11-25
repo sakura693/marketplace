@@ -133,3 +133,19 @@
     margin-top: 5px;
     margin-left: 70px;
 }
+
+
+/*画面幅が850px以下のデバイス（タブレットなど）*/
+@media (max-width: 850px) {
+    .purchase-form {
+        grid-template-columns: 1.7fr 1fr;
+    }
+
+    /*セレクトボックスの三角形*/
+    .select-box-wrapper::after {
+        top: 14px;
+        /*疑似要素を親要素の上から14pxのところに配置*/
+        right: 50px;
+        /*親要素の右から10pxのところに配置*/
+    }
+}

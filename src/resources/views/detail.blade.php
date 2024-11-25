@@ -24,11 +24,6 @@
 
 @section('content')
 <div class="content-form">
-    <!--ログイン後の出力画面（仮）-->
-    @if (Auth::check())
-    <p>ログインできてるよ</p>
-    @endif
-    
     <div class="item-form">
         <div class="item-image">
             <div class="item-image__inner">

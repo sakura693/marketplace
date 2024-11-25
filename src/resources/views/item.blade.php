@@ -26,11 +26,6 @@
 
 @section('content')
 <div class="content-form">
-    <!--ログイン後の出力画面（仮）-->
-    @if (Auth::check())
-    <p>ログインできてるよ</p>
-    @endif
-
     <div class="item-form__btn-inner">
         <!--aタグのがいいの？-->
         <div class="label-inner">

@@ -24,6 +24,7 @@ body {
     align-items: center; /*垂直方向に中央寄せ*/
 }
 
+/*coachtechの画像*/
 .header__image{
     height: 60%;
     margin-left: 20px;
@@ -118,6 +119,20 @@ textarea::placeholder{
 }
 
 
-/*ページネーションのデザイン*/
-.pagination{
+
+/*画面幅が850px以下のデバイス（タブレットなど）*/
+@media (max-width: 850px) {
+    .header__image {
+        width: 75%;
+        height: auto;
+    }
+
+    .search__form-input {
+        margin-left: -15px;
+        padding: 5px 80px 5px 18px;
+    }
+    
+    .logout-btn {
+        margin-left: -20px;
+    }
 }

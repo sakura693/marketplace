@@ -170,3 +170,36 @@
     margin-bottom: 30px;
     margin-top: -25px;
 }
+
+/*画面幅が850px以下のデバイス（タブレットなど）*/
+@media (max-width: 850px) {
+    .item-form {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        /*item-formを等しく半分に分ける*/
+        margin-top: 50px;
+        gap: 40px;
+        padding: 0 150px;
+    }
+
+    .text-input {
+        width: 80%;
+    }
+
+    .item-btn{
+        width: 90%;
+    }
+
+    .comment-content__inner{
+        width: 90%;
+    }
+
+    .comment-input_content{
+        width: 90%;
+    }
+
+
+    .image{
+        width: 100%;
+    }
+}
