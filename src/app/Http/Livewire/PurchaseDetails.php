@@ -6,13 +6,11 @@ use Livewire\Component;
 
 class PurchaseDetails extends Component
 {
-    /*支払方法リストを格納*/
+    /*コンポーネントで使うデータを定義*/
     public $item;
     public $user;
     public $payment_methods; 
-
-    /*selectedPaymentMethodをプロパティとして定義*/
-    public $selectedPaymentMethod; 
+    public $selectedPaymentMethod; /*選択した支払方法*/
 
     /*支払方法のリストをコンポーネントに渡す*/
     public function mount($item, $user, $payment_methods){

@@ -7,7 +7,7 @@
     <title>COACHTECH</title>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
 
-    <!-- LivewireStylesを挿入する場所(purchase.balde.php)-->
+    <!-- LivewireStylesを挿入 -->
     @yield('livewire-styles') 
     
     @yield('css')
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <!-- LivewireScriptsを挿入する場所（purchase,blade.php） -->
+    <!-- LivewireScriptsを挿入 -->
     @yield('livewire-scripts')
 </body>
 
