@@ -49,8 +49,8 @@
     <div class="item-form__label">
         <!--aタグのがいいの？-->
         <div class="label-inner">
-            <a class="sell-label" href="/mypage?page=sell">出品した商品</a>
-            <a class="buy-label" href="/mypage?page=buy">購入した商品</a>
+            <a class="sell-label" href="/mypage?tab=sell">出品した商品</a>
+            <a class="buy-label" href="/mypage?tab=buy">購入した商品</a>
         </div>
     </div>
     

@@ -36,15 +36,15 @@ class ProfileController extends Controller
     public function mypage(Request $request){
 
         /*クエリを取得*/
-        $page = $request->query('page');
+        $tab = $request->query('tab');
         $user = $request->user();
 
         /*itemsを定義*/
         $items = collect(); // 初期値として空のコレクションを定義 
 
-        if ($page === 'sell'){
+        if ($tab === 'sell'){
             $items = Item::where('user_id', $user->id)->get();
-        }elseif ($page === 'buy'){
+        }elseif ($tab === 'buy'){
             $orders = Order::with('item')->where('user_id', $user->id)->get();
 
             $items = $orders->map(function ($order) {
@@ -63,7 +63,7 @@ class ProfileController extends Controller
         return view('edit-profile', compact('user'));
     }
 
-    /*（仮）プロフィールを更新（マイページから）*/
+    /*プロフィールを更新（マイページから）*/
     public function profileUpdate(AddressRequest $request){
         $profiles = $request->all();
         if ($request->hasFile('image')){

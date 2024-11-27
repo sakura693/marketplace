@@ -21,16 +21,16 @@ use App\Http\Controllers\ProfileController; /*追加*/
 */
 
 
-/*商品一覧画面を取得*/
+/*☆商品一覧画面を取得*/
 Route::get('/', [ItemController::class, 'index']);
 
-/*商品詳細画面を取得*/
+/*☆商品詳細画面を取得*/
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
-/*会員情報を保存*/
+/*☆会員情報を保存*/
 Route::post('/register', [RegisterController::class, 'register']);
 
-/*ログイン*/
+/*☆ログイン*/
 Route::post('/login', [LoginController::class, 'store']);
 
 /*ログアウト*/
@@ -40,16 +40,16 @@ Route::post('/logout', [LoginController::class, 'destroy']);
 
 /*認証済みユーザのみができること*/
 Route::middleware('auth')->group(function () {
-    /*プロフィール画面を取得*/
+    /*☆プロフィール画面を取得*/
     Route::get('/mypage', [ProfileController::class, 'mypage']);
 
-    /*商品出品画面を取得*/
+    /*☆商品出品画面を取得*/
     Route::get('/sell', [ItemController::class, 'sell']);
 
-    /*商品購入画面を取得*/
+    /*☆商品購入画面を取得*/
     Route::get('/purchase/{item_id}', [ItemController::class, 'purchase']);
 
-    /*住所変更画面を取得*/
+    /*☆住所変更画面を取得*/
     Route::get('/purchase/address/{item_id}', [ProfileController::class, 'address']);
 
     /*住所更新(postメソッドでこの⇩ルートにアクセスした時addressUpdateメソッドを実行する) */
@@ -70,22 +70,13 @@ Route::middleware('auth')->group(function () {
     /*商品検索*/
     Route::get('/search', [ItemController::class, 'search']);
 
-    /*プロフィール編集画面を取得*/
+    /*☆プロフィール編集画面を取得*/
     Route::get('/mypage/profile', [ProfileController::class, 'editProfile']);
 
     /*プロフィールを保存*/
     Route::patch('/', [ProfileController::class, 'profileUpdate']);
 });
 
-
-
-
-
-/*（仮）プロフィール編集画面を取得
-Route::get('/mypage/profile', [RegisterController::class, 'profile']);*/
-
-/*（仮）プロフィールを保存
-Route::patch('/', [ProfileController::class, 'update']);*/
 
 
 

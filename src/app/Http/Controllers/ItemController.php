@@ -27,11 +27,11 @@ class ItemController extends Controller
     public function index(Request $request){
        
         /*クエリを取得*/
-        $page = $request->query('page');
+        $tab = $request->query('tab');
         $user = $request->user();
 
         /*マイリストの場合*/
-        if ($page === 'mylist'){
+        if ($tab === 'mylist'){
             /*ユーザがログインしている場合*/
             if($user){
                 $user = $request->user();

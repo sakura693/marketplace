@@ -30,7 +30,7 @@
         <!--aタグのがいいの？-->
         <div class="label-inner">
             <a class="recomend-label" href="/">おすすめ</a>
-            <a class="mylist-label" href="/?page=mylist">マイリスト</a>
+            <a class="mylist-label" href="/?tab=mylist">マイリスト</a>
         </div>
     </div>
     
