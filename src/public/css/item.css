@@ -56,7 +56,6 @@
     color: red;
 }
 
-/*画面幅が850px以下のデバイス（タブレットなど）*/
 @media (max-width: 850px) {
     .item-name{
         font-size: 15px;

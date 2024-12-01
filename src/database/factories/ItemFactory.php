@@ -3,10 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Item; /*追加*/
-use App\Models\User; /*追加*/
-use App\Models\Status; /*追加*/
-
+use App\Models\Item; 
+use App\Models\User; 
+use App\Models\Status; 
 class ItemFactory extends Factory
 {
     protected $model = Item::class;

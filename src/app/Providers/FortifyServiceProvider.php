@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
-
-use App\Http\Requests\LoginRequest; // LoginRequestをインポート
-
+use App\Http\Requests\LoginRequest; 
 use Illuminate\Support\Facades\Log;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 
@@ -27,7 +25,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        /*カスタムバリデーションを適用*/
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
     }
 
@@ -36,20 +33,16 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        /*ユーザーを新しく作成する方法を指定するコード。CreateNewUserクラスでユーザー作成のルールや処理を定義。 */
         Fortify::createUsersUsing(CreateNewUser::class);
-        
-        /*Fortifyで登録画面を取得*/
+
         Fortify::registerView(function(){
             return view('auth.register');
         });
 
-        /*Fortifyでログイン画面を取得*/
         Fortify::loginView(function(){
             return view('auth.login');
         });
 
-        /*特定のメールアドレスのユーザーが1分間に最大10回ログイン試行をできるよう制限する設定*/
         RateLimiter::for('login', function(Request $request){
             $email = (string) $request->email;
 

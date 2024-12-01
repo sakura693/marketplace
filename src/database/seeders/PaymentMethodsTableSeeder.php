@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; /*追記する*/
+use Illuminate\Support\Facades\DB; 
 
 class PaymentMethodsTableSeeder extends Seeder
 {

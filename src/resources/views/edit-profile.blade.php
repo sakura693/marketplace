@@ -26,17 +26,14 @@
     <form class="profile-form" action="/" method="post" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
-        <!--⇩画像を挿入する場所作成-->
         <div class="form__group img-group">
             <div class="img-content">
                 <div class="profile-img__inner">
                     @if ($user->image !== null)
-                        <!--写真を表示-->
                         <div class="profile-img__wrapper">
                             <img class="profile-img" src="{{ asset( $user->image )}}" alt="{{ $user->name }}">
                         </div>
                     @else
-                        <!--写真がない場合-->            
                         <div class="non-profile-img"></div>
                     @endif
                 </div>
@@ -87,7 +84,6 @@
             </div>
         </div>
 
-        <!--保留-->
         <div class="form__group">
             <div class="form__group-title">建物</div>
             <div class="form__group-content">
@@ -100,7 +96,6 @@
         </div>
 
         <div class="form__button">
-            <!--仮（inputでボタン作る？？）-->
             <button class="profile-btn btn">更新する</button>
         </div>
     </form>

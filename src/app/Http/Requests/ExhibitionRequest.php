@@ -27,7 +27,7 @@ class ExhibitionRequest extends FormRequest
             'name' => 'required',
             'description' => 'required|max:255',
             'image' => 'required|image|mimes:jpeg,png', 
-            'category' => 'required|array', /*arrayを追加*/ 
+            'category' => 'required|array',
             'status_id' => 'required', 
             'price' => 'required|numeric|min:0'
         ];

@@ -1,13 +1,12 @@
-/*ウェブページのスタイルをリセット*/
 * {
-    margin: 0; /*ブラウザのデフォのmarginをなくす*/
-    padding: 0; /*ブラウザのデフォのpaddingをなくす*/
+    margin: 0; 
+    padding: 0; 
     box-sizing: border-box;
 }
 
 html,
 body {
-    height: 100%; /*高さをしていないと子要素の高さが適用されない*/
+    height: 100%; 
 }
 
 .app{
@@ -15,22 +14,19 @@ body {
     width: 100%;
 }
 
-/*高さをheaderとcontent合わせて100にする*/
 .header{
     background: black;
     height: 8vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    align-items: center; /*垂直方向に中央寄せ*/
+    align-items: center;
 }
 
-/*coachtechの画像*/
 .header__image{
     height: 60%;
     margin-left: 20px;
 }
 
-/*header検索フォーム*/
 .search__form-input {
     padding: 7px 150px 7px 30px;
 }
@@ -46,8 +42,6 @@ body {
     align-items: center;
 }
 
-/*header各種ボタン
-/*ログアウトボタン*/
 .logout-btn {
     color: white;
     border: none;
@@ -71,7 +65,6 @@ body {
     border-radius: 3px;
 }
 
-/*見せかけのボタン（未認証時に表示するボタン）*/
 .mypage-btn__fake{
     color: white;
     cursor: pointer;
@@ -88,11 +81,9 @@ body {
 
 
 .content{
-    /*height: 95vh; ⇐これいらないかも*/
     display: flex;
 }
 
-/*input欄デザイン*/
 input, textarea{
     border: 1px solid rgb(206, 206, 216);
     border-radius: 3px;
@@ -106,7 +97,6 @@ textarea::placeholder{
     padding-left: 5px;
 }
 
-/*ボタンのデザイン*/
 .btn{
     display: block;
     border: none;
@@ -118,9 +108,6 @@ textarea::placeholder{
     cursor: pointer;
 }
 
-
-
-/*画面幅が850px以下のデバイス（タブレットなど）*/
 @media (max-width: 850px) {
     .header__image {
         width: 75%;

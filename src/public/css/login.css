@@ -1,7 +1,6 @@
 .content-form {
     width: 40%;
     margin: 0 auto;
-    /*水平方向に中央寄せ*/
 }
 
 .content-heading {
@@ -41,11 +40,9 @@
     color: blue;
     text-decoration: none;
     padding-bottom: 40px;
-    /*適用されない（100vhで考えているから？）*/
     font-size: 13px;
 }
 
-/*画面幅が850px以下のデバイス（タブレットなど）*/
 @media (max-width: 850px) {
     .text-input {
         width: 100%;

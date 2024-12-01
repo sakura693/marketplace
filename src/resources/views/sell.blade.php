@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/sell.css') }}">
 @endsection
 
-<!--header部分のリンク-->
 @section('link')
 <div class="search__form">
     @csrf
@@ -52,7 +51,6 @@
                     <div class="category-content">
                         @foreach($categories as $category)
                         <div class="categoryies">
-                            <!--checkboxで複数選択可能-->
                             <input class="category-btn" type="checkbox" name="category[]" id="category_{{ $category->id }}" value="{{ $category->id }}" {{ old('category') && in_array($category->id, old('category')) ? 'checked' : '' }}>
                             <label class="category-name" for="category_{{ $category->id }}">{{ $category->category}}</label>
                         </div>
@@ -74,7 +72,6 @@
                     <div class="select-box-wrapper">
                         <select class="select-box" name="status_id">
                             <option disabled selected>選択してください</option>
-                            <!--statusesテーブルから１つずつ取り出して出力-->
                             @foreach($statuses as $status)
                             <option value="{{ $status->id }}" {{ old('status_id') == $status->id ? 'selected' : ''}}>{{ $status->status }}</option>
                             @endforeach

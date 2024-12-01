@@ -5,11 +5,11 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\Item; /*追加*/
-use App\Models\User; /*追加*/
-use App\Models\Status; /*追加*/
-use App\Models\Category; /*追加*/
-use App\Models\ProductCategory; /*追加*/
+use App\Models\Item; 
+use App\Models\User; 
+use App\Models\Status; 
+use App\Models\Category; 
+use App\Models\ProductCategory; 
 
 class ItemSellTest extends TestCase
 {
@@ -21,15 +21,12 @@ class ItemSellTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        // 出品画面にアクセス
         $response = $this->get('/sell');
         $response->assertStatus(200);
 
-        // 既存のStatusとCategoryを取得
         $status = Status::first();
         $category = Category::first();
 
-        // 出品する商品データ
         $itemData = [
             'user_id' => $user->id,
             'category_id' => $category->id,
@@ -40,10 +37,8 @@ class ItemSellTest extends TestCase
             'image' => 'dummy.jpg',
         ];
 
-        /*商品を保存*/
         $response = $this->post('/', $itemData);
 
-        // 商品が正しく保存されたかを確認
         $this->assertDatabaseHas('items', [
             'user_id' => $user->id,
             'status_id' => $status->id,

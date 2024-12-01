@@ -25,10 +25,6 @@ class AddressRequest extends FormRequest
     {
         return [
             'postal_code' => 'required|regex:/^[0-9]{3}-[0-9]{4}$/', 
-            /*regexを使用。
-            ^[0-9]{3}：最初の3文字は数字
-            -：次にハイフン
-            [0-9]{4}$：その後に4文字の数字*/
             'address' => 'required',
             'building' => 'required',    
         ];

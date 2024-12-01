@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
 @endsection
 
-<!--header部分のリンク-->
 @section('link')
 <div class="search__form">
     @csrf

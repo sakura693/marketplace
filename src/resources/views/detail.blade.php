@@ -2,11 +2,9 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
-<!--Font Awesomをインポート-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 @endsection
 
-<!--header部分のリンク-->
 @section('link')
 <form class="search__form" action="">
     @csrf
@@ -39,36 +37,27 @@
                     <p class="item-content__price"><span class="yen-mark">￥</span>{{ $item->price}}<span class="item-content__price-tax">（税込）<span></p>
                     
                     <div class="icon-inner">
-                        <!--星アイコン-->
                         <div class="icon__star">
                             <form class="like-form" action="{{ route('like.toggle', ['item_id' => $item->id]) }}" method="post">
                                 @csrf
                                 <button class="like-btn" type="submit">
                                     @if($isLikedByUser)
-                                        <!--いいねされた状態-->
                                         <i class="fa-solid fa-star fa-lg" style="color: #FFD43B;"></i>
                                     @else
-                                        <!--いいねされていない状態-->
                                         <i class="fa-regular fa-star fa-lg" style="color: #5d5b5b;"></i>
                                     @endif
                                 </button>
                             </form>
-
-                            <!--いいね数表示-->
                             <p class="like-count">{{ $likeCount}}</p>
                         </div>
 
-                        <!--吹き出しアイコン（Font Awesomより）-->
                         <div class="icon__speech-bubble">
                             <i class="fa-regular fa-comment fa-lg" style="color: #5d5b5b;"></i>
-                            
-                            <!--コメント数表示-->
                             <p class="comment-count">{{ $commentCount }}</p>
                         </div>
                     </div>
 
                     <a class="item-btn btn" href="/purchase/{{ $item->id }}">購入手続きへ</a>
-
 
                     <div class="item-content">
                         <p class="item-content__heading">商品説明</p>
@@ -104,15 +93,11 @@
                     @foreach($comments as $comment)
                     <div class="comment_inner">
                         <div class="comment"></div>
-
-                        <!--写真-->
                         @if ($comment->user->image !== null)
-                            <!--写真を表示-->
                             <div class="profile-img__wrapper">
                                 <img class="profile-img" src="{{ asset( $comment->user->image )}}" alt="{{ $comment->user->name }}">
                             </div>
-                        @else
-                            <!--写真がない場合-->            
+                        @else       
                             <div class="non-profile-img"></div>
                         @endif
 

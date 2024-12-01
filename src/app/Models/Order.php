@@ -15,7 +15,6 @@ class Order extends Model
         'payment_method_id'
     ];
 
-    /*Itemと関連付ける*/
     public function item(){
         return $this->belongsTo(Item::class);
     }

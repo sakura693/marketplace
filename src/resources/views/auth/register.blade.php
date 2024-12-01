@@ -52,7 +52,6 @@
             </div>
         </div>
 
-        <!--保留-->
         <div class="form__group">
             <div class="form__group-title">確認用パスワード</div>
             <div class="form__group-content">
@@ -68,7 +67,6 @@
         </div>
 
         <div class="form__button">
-            <!--仮（inputでボタン作る？？）-->
             <button class="register-btn btn">登録する</button>
             <a  class="back-btn" href="/login">ログインはこちら</a>
         </div>

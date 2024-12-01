@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest; /*追加*/
-use Illuminate\Support\Facades\Auth; /*追加*/
-use Laravel\Fortify\Contracts\LoginResponse; /*追加*/
+use App\Http\Requests\LoginRequest; 
+use Illuminate\Support\Facades\Auth; 
+use Laravel\Fortify\Contracts\LoginResponse; 
 
 class LoginController extends Controller
 {

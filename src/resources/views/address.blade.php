@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="{{ asset('css/address.css') }}">
 @endsection
 
-<!--header部分のリンク-->
 @section('link')
 <form class="search__form" action="">
     @csrf
@@ -70,7 +69,6 @@
         </div>
 
         <div class="form__button">
-            <!--仮（inputでボタン作る？？）-->
             <input class="address-btn btn" type="submit" value="登録する">
         </div>
     </form>

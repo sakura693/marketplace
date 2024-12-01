@@ -19,23 +19,18 @@ class Item extends Model
         'sold'
     ];
 
-    /*categoriesと関連付けてる（中間テーブルでつながれているテーブルのみにこのbelongsToManyを設定する）*/
     public function categories(){
         return $this->belongsToMany(Category::class, 'product_categories', 'item_id', 'category_id');
     }
 
-    /*Statusのリレーションを追加（一対多）*/
     public function status(){
         return $this->belongsTo(Status::class);
     }
 
-    /*likesと関連付ける（itemとlikeは一対多）*/
     public function likes(){
         return $this->hasMany(Like::class);
     }
 
-    
-    /*スコープ（キーワード検索機能）*/
     public function scopeKeywordSearch($query, $keyword){
         if(!empty($keyword)){
             $query->where('name', 'like', '%' . $keyword . '%');

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth; /*Authを追加*/
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use App\Http\Controllers\Controller; /*追加*/
-use App\Actions\Fortify\CreateNewUser; /*追加*/
-use Illuminate\Support\Facades\Auth; /*追加*/
+use App\Http\Controllers\Controller; 
+use App\Actions\Fortify\CreateNewUser; 
+use Illuminate\Support\Facades\Auth; 
 
 class RegisterController extends Controller
 {

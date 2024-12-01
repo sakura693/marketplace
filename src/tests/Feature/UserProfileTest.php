@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\User; /*追加*/
+use App\Models\User; 
 
 class UserProfileTest extends TestCase
 {
@@ -22,11 +22,9 @@ class UserProfileTest extends TestCase
         ]);
         $this->actingAs($user);
 
-        /*プロフィールページ編集ページにアクセス*/
         $response = $this->get('/mypage/profile');
         $response->assertStatus(200);
 
-        /*プロフィール情報が表示されているか確認*/
         $response->assertSee('テストユーザー');
         $response->assertSee('123-4567'); 
         $response->assertSee('東京都渋谷区');  

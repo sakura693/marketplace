@@ -39,7 +39,6 @@
         </div>
 
         <div class="form__button">
-            <!--仮（inputでボタン作る？？）-->
             <button class="login-btn btn">ログインする</button>
             <a  class="back-btn" href="/register">会員登録はこちら</a>
         </div>

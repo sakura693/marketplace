@@ -1,10 +1,10 @@
 .content-form{
-    margin: 0 auto; /*中央寄せ*/
+    margin: 0 auto; 
 }
 
 .item-form{
     display: grid;
-    grid-template-columns: 1fr 1fr; /*item-formを等しく半分に分ける*/
+    grid-template-columns: 1fr 1fr; 
     margin-top: 50px;
     gap: 40px;
     padding: 0 150px;
@@ -106,7 +106,6 @@
     border-radius: 3px;
 }
 
-/*アイコン*/
 .icon-inner{
     margin: 5px 0;
 }
@@ -171,12 +170,10 @@
     margin-top: -25px;
 }
 
-/*画面幅が850px以下のデバイス（タブレットなど）*/
 @media (max-width: 850px) {
     .item-form {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        /*item-formを等しく半分に分ける*/
         margin-top: 50px;
         gap: 40px;
         padding: 0 150px;

@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required | email',
-            'password' => 'required | min:8 | confirmed', /*confirmedで、password と password_confirmationが一致してるか確認できる*/
+            'password' => 'required | min:8 | confirmed', 
         ];
     }
 
