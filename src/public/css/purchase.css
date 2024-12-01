@@ -1,0 +1,130 @@
+.content-form{
+    width: 70%;
+    margin: 0 auto ;
+}
+
+.purchase-form{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.purchase-content__inner{
+    margin-right: 50px;
+}
+
+.purchase-content{
+    border-bottom: 1px solid rgb(211, 211, 211);
+    padding-bottom: 40px;
+}
+
+.item-content{
+    display: flex;
+    gap: 30px;
+}
+
+.image-inner{
+    background: rgb(211, 211, 211);
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    align-content: center;
+}
+
+.image{
+    width: 100%;
+}
+
+.item-name{
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.purchase-content__label{
+    padding: 20px;
+}
+
+.select-box-wrapper {
+    position: relative;
+}
+
+.select-box {
+    border: 1px solid rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 5px 100px 8px 0;
+    color: gray;
+    cursor: pointer;
+    appearance: none;
+    padding-left: 10px;
+}
+
+.select-box-wrapper::after {
+    position: absolute;
+    top: 15px;
+    right: 270px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid gray;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: "";
+    transform: translateY(-50%);
+}
+
+.select-box option {
+    background: #818181;
+    color: white;
+}
+
+.edit-addres__link{
+    color: blue;
+    text-decoration: none;
+}
+
+.purchase-content__upper{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.purchase-content__main{
+    margin-left: 70px;
+}
+
+.check-content__price{
+    border: 1px solid black;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.check-content__payment {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.purchase-btn{
+    margin-top: 30px;
+}
+
+.purchase-form__error-message{
+    color: red;
+    margin-top: 5px;
+    margin-left: 70px;
+}
+
+@media (max-width: 850px) {
+    .purchase-form {
+        grid-template-columns: 1.7fr 1fr;
+    }
+
+    .select-box-wrapper::after {
+        top: 14px;
+        right: 50px;
+    }
+}

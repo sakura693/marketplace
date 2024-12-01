@@ -1,0 +1,51 @@
+.content-form {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.content-heading {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.form__group {
+    margin-bottom: 30px;
+}
+
+.form__group-title {
+    font-weight: bold;
+}
+
+.login-form__error-message {
+    color: red;
+}
+
+.text-input {
+    width: 100%;
+}
+
+.form__button {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.login-btn {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.back-btn {
+    color: blue;
+    text-decoration: none;
+    padding-bottom: 40px;
+    font-size: 13px;
+}
+
+@media (max-width: 850px) {
+    .text-input {
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,125 @@
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%; 
+}
+
+.app{
+    height: 100%;
+    width: 100%;
+}
+
+.header{
+    background: black;
+    height: 8vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+
+.header__image{
+    height: 60%;
+    margin-left: 20px;
+}
+
+.search__form-input {
+    padding: 7px 150px 7px 30px;
+}
+
+.search__form-input::placeholder {
+    font-size: 13px;
+    color: gray;
+    text-align: left;
+}
+
+.header-btn{
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    color: white;
+    border: none;
+    background: black;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 17px;
+}
+
+.mypage-btn {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.sell-btn {
+    color: black;
+    background: white;
+    text-decoration: none;
+    padding: 4px 15px;
+    border-radius: 3px;
+}
+
+.mypage-btn__fake{
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}    
+
+.sell-btn__fake{
+    color: black;
+    background: white;
+    padding: 4px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.content{
+    display: flex;
+}
+
+input, textarea{
+    border: 1px solid rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 8px 0;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color: black;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.btn{
+    display: block;
+    border: none;
+    color: white;
+    background: rgb(255, 73, 73);
+    border-radius: 3px;
+    width: 100%;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+@media (max-width: 850px) {
+    .header__image {
+        width: 75%;
+        height: auto;
+    }
+
+    .search__form-input {
+        margin-left: -15px;
+        padding: 5px 80px 5px 18px;
+    }
+    
+    .logout-btn {
+        margin-left: -20px;
+    }
+}

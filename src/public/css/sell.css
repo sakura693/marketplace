@@ -1,0 +1,143 @@
+.content-form {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.content-heading {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.content-group {
+    margin-bottom:40px; 
+}
+
+
+.content-group__heading{
+    border-bottom: 1.5px solid gray;
+    margin-bottom: 20px;
+}
+
+.content-group__heading-text{
+    font-size: 18px;
+    font-weight: bold;
+    color: gray;
+}
+
+.form__group {
+    margin-bottom: 30px;
+}
+
+.form__group-title {
+    font-weight: bold;
+}
+
+.sell-form__error-message {
+    color: red;
+}
+
+.text-input {
+    width: 100%;
+}
+
+.textarea-box{
+    resize: none;
+}
+
+.categoryies{
+    display: inline-block; 
+    margin: 20px 3px 8px 3px;
+}
+
+.category-btn{
+    display: none;
+}
+
+.category-btn:checked + .category-name{
+    background: #FF6F61;
+    color: white;
+}
+
+.category-name{
+    border: 1.5px solid #FF6F61;
+    display: inline-block; 
+    color: #FF6F61;
+    border-radius: 15px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.select-box-wrapper{
+    position: relative;
+}
+
+.select-box{
+    width: 100%;
+    border: 1px solid rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 8px 0;
+    color: gray;
+    cursor: pointer;
+    appearance: none;
+    padding-left: 10px;
+}
+
+.select-box-wrapper::after{ 
+    position: absolute;
+    top: 18px; 
+    right: 10px;
+    width: 0; 
+    height: 0;
+    border-top: 8px solid gray;
+    border-right: 5px solid transparent; 
+    border-left: 5px solid transparent;
+    content: ""; 
+    transform: translateY(-50%); 
+}
+
+.select-box option{
+    background: #818181;
+    color: white;
+}
+
+.img-group{
+    margin-bottom: 50px;
+}
+
+.img-content{
+    border: 1px dashed rgb(206, 206, 216);
+    border-radius: 3px;
+    padding: 40px 20px;
+    display: flex; 
+    justify-content: center;
+}
+
+.img-btn{
+    display: none;
+}
+
+.img-label{
+    border: 1.5px solid #FF6F61;
+    display: inline-block;
+    color: #FF6F61;
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.form__button {
+    margin-top: 60px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+@media (max-width: 850px) {
+    .text-input {
+        width: 100%;
+    }
+}
