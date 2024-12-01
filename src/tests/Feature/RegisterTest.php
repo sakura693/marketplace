@@ -91,6 +91,4 @@ class RegisterTest extends TestCase
         $user = \App\Models\User::where('email', $email)->first();
         $this->assertTrue(\Illuminate\Support\Facades\Hash::check('12345678', $user->password));
     }
-
-
 }

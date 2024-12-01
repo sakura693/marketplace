@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController; 
 use Laravel\Fortify\Fortify; /*追加*/
 use App\Http\Controllers\ProfileController; /*追加*/
+use App\Http\Controllers\PaymentController; /*追加*/
 
 
 /*
@@ -64,8 +65,8 @@ Route::middleware('auth')->group(function () {
     /*商品を登録*/
     Route::post('/', [ItemController::class, 'register']);
 
-    /*商品注文*/
-    Route::post('/mypage', [ItemController::class, 'order']);
+    /*商品注文
+    Route::post('/mypage', [ItemController::class, 'order']);*/
 
     /*商品検索*/
     Route::get('/search', [ItemController::class, 'search']);
@@ -75,6 +76,11 @@ Route::middleware('auth')->group(function () {
 
     /*プロフィールを保存*/
     Route::patch('/', [ProfileController::class, 'profileUpdate']);
+
+    /*以下はstripe用のルート設定*/
+    Route::post('/checkout/{item}', [PaymentController::class, 'checkout']);
+    Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 });
 
 

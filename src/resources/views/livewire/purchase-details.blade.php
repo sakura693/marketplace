@@ -1,4 +1,4 @@
-<form class="purchase-form" action="/mypage" method="post">
+<form class="purchase-form" action="/checkout/{{$item->id}}" method="post">
         @csrf
         <div class="purchase-content__inner">
             <div class="purchase-content item-content">
@@ -19,9 +19,9 @@
                     <div class="select-box-wrapper">
                         <!--livewireを適用⇩(wire:model="selectedPaymentMethod")-->
                         <select class="select-box" name="payment_method" wire:model="selectedPaymentMethod">
-                            <option disabled selected>選択してください</option>
+                            <option selected value="">選択してください</option>
                             @foreach($payment_methods as $payment_method)
-                                <option value="{{ $payment_method->id }}" {{ old('payment_method_id')==$payment_method->id ? 'selected' : ''}}>{{ $payment_method->payment_method }}</option>
+                                <option value="{{ $payment_method->id }}" {{ old('payment_method')==$payment_method->id ? 'selected' : ''}}>{{ $payment_method->payment_method }}</option>
                             @endforeach
                         </select>
                     </div>

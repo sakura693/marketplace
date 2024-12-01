@@ -7,7 +7,6 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
-use App\Http\Requests\PurchaseRequest;
 use App\Models\User; /*追加*/
 use App\Models\Status; /*追加*/
 use App\Models\Category; /*追加*/
@@ -142,26 +141,6 @@ class ItemController extends Controller
         return redirect('/');
     }
 
-    /*商品を購入*/
-    public function order(PurchaseRequest $request){
-        $user = auth()->user();
-        $item_id = $request->input('item_id');        
-        $payment_method_id = $request->input('payment_method');
-
-        $item = Item::find($item_id);
-
-        Order::create([
-            'user_id' => $user->id,
-            'item_id' => $item_id,
-            'payment_method_id' => $payment_method_id,
-        ]);
-
-        /*商品を購入済みに更新*/
-        $item->sold = true; /*itemsテーブルのsoldカラムをfalse→true*/
-        $item->save();
-
-        return redirect('/mypage');
-    }
 
     /*商品検索機能*/
     public function search(Request $request){
@@ -171,8 +150,6 @@ class ItemController extends Controller
         return view('item', compact('items'));
     }
 
-
-    
 
     /*商品購入画面を出力*/
     public function purchase($item_id){
