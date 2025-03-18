@@ -27,7 +27,7 @@ class PaymentController extends Controller
         $description = '購入: ' . $item->name; 
         $amount = $item->price; 
 
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe::setApiKey(config('services.stripe.secret'));
 
         $successUrl = route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}&item_id=' . $item->id . '&payment_method_id=' . $paymentMethodType;
 
