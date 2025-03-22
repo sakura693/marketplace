@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('image');
             $table->string('name');
             $table->integer('price');
-            $table->boolean('sold')->default(false);
+            $table->tinyInteger('sold')->default(0)->comment('0:未販売、1:取引中、2:取引完了');
             $table->text('description');
             $table->timestamps();
         });

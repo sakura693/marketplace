@@ -69,7 +69,7 @@ class PaymentController extends Controller
         ]);
 
         $item = Item::findOrFail($itemId);
-        $item->sold = true; 
+        $item->sold = 1; 
         $item->save();
 
         return view('payment-success'); 

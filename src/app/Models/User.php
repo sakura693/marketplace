@@ -32,6 +32,11 @@ class User extends Authenticatable
         'pm_type', 
     ];
 
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'user_id');
+    }
+    
     /**
      * The attributes that should be hidden for serialization.
      *
