@@ -19,6 +19,11 @@ class Item extends Model
         'sold'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function categories(){
         return $this->belongsToMany(Category::class, 'product_categories', 'item_id', 'category_id');
     }
@@ -29,6 +34,10 @@ class Item extends Model
 
     public function likes(){
         return $this->hasMany(Like::class);
+    }
+
+    public function order(){
+        return $this->hasOne(Order::class, 'item_id');
     }
 
     public function scopeKeywordSearch($query, $keyword){

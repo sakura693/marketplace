@@ -20,8 +20,6 @@
 </div>
 @endsection
 
-
-
 @section('content')
 <div class="content-form">
     <div class="item-form__btn-inner">
@@ -43,7 +41,7 @@
                         <div class="item-label">
                             <p class="item-name">{{ $item->name }}</p>
                             
-                            <p class="sold-label">{{ $item->sold ? 'sold' : '' }}</p>
+                            <p class="sold-label">{{ $item->sold === 2 ? 'sold' : '' }}</p>
                         </div>
                     </div>
                 </a>

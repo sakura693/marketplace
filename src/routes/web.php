@@ -7,19 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use Laravel\Fortify\Fortify; 
 use App\Http\Controllers\ProfileController; 
 use App\Http\Controllers\PaymentController; 
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+use App\Http\Controllers\ChatController; 
 
 Route::get('/', [ItemController::class, 'index']);
 
@@ -58,6 +46,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout/{item}', [PaymentController::class, 'checkout']);
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
+    Route::get('/mypage/chat/{item_id}', [ChatController::class, 'chat']);
+
+    Route::post('/mypage/chat/{item_id}', [ChatController::class, 'storeMessage']);
+
+    Route::put('/mypage/chat/{chat}', [ChatController::class, 'update']);
+
+    Route::delete('/mypage/chat/{chat}', [ChatController::class, 'destroy']);
+
+    Route::post('/mypage/chat/{item_id}/rate', [ChatController::class, 'storeRating']);
 });
 
 
