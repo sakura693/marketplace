@@ -26,6 +26,7 @@
 }
 
 .other-items{
+    text-decoration: none;
     font-size: 15px;
     display: flex;
     justify-content: center;
@@ -330,4 +331,38 @@
     color: red;
     font-size: 12px;
     margin-left: 35px;
+}
+
+@media (max-width: 850px) {
+    .sidebar-container {
+        width: 25%;
+    }
+
+    .sidebar__text {
+        font-size: 17px;
+    }
+
+    .other-items{
+        font-size: 12px;
+    }
+
+    .content-top__title {
+        font-size: 18px;
+    }
+
+    .complete-btn {
+        font-size: 14px;
+    }
+
+    .message-input{
+        width: 60%;
+    }
+
+    .img-label {
+        padding: 5px 15px;
+    }
+
+    .inner-content__top {
+        padding-top: 45px;
+    }
 }

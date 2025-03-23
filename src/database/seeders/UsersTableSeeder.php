@@ -17,8 +17,8 @@ class UsersTableSeeder extends Seeder
     {
         $param = [
             'id' => '1',
-            'name' => 'はなこ',
-            'email' => 'hanako@test.com',
+            'name' => 'テストユーザー１',
+            'email' => 'test1@gmail.com',
             'password' => Hash::make('password'),
             'image' => 'storage/image/girl.png',
             'postal_code' => null,
@@ -29,8 +29,8 @@ class UsersTableSeeder extends Seeder
 
         $param = [
             'id' => '2',
-            'name' => 'たろう',
-            'email' => 'taro@test.com',
+            'name' => 'テストユーザー２',
+            'email' => 'test2@gmail.com',
             'password' => Hash::make('password'),
             'image' => 'storage/image/boy.png',
             'postal_code' => null,
@@ -41,8 +41,8 @@ class UsersTableSeeder extends Seeder
 
         $param = [
             'id' => '3',
-            'name' => 'さくら',
-            'email' => 'sakura@test.com',
+            'name' => 'テストユーザー３',
+            'email' => 'test3@gmail.com',
             'password' => Hash::make('password'),
             'image' => 'storage/image/sakura.jpg',
             'postal_code' => null,

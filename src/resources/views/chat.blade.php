@@ -11,11 +11,13 @@
         <div class="sidebar-container">
             <p class="sidebar__text">その他の取引</p>
 
-            <div class="other-tems__container">
-                <a class="other-items">商品名</a>
-                <a class="other-items">商品名</a>
-                <a class="other-items">商品名</a>
-            </div>
+            @if($otherItems->isNotEmpty())
+                @foreach($otherItems as $otherItem)
+                    <div class="other-tems__container">
+                        <a class="other-items" href="   {{$otherItem->id}}">{{ $otherItem->name}}</a>
+                    </div>      
+                @endforeach
+            @endif
         </div>
 
         <div class="content-container">
@@ -28,8 +30,6 @@
                     @endif
 
                     <p class="content-top__title">「{{$partner->name}}」さんとの取引画面</p>
-
-                    <!--取引完了ボタン-->
                     <div class="btn-container">
                         <a class="complete-btn" href="#modal">取引を完了する</a>
                     </div>

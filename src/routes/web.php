@@ -9,18 +9,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaymentController; 
 use App\Http\Controllers\ChatController; 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Route::get('/', [ItemController::class, 'index']);
 
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
@@ -59,20 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
     Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
-
-    /*チャット画面取得*/
     Route::get('/mypage/chat/{item_id}', [ChatController::class, 'chat']);
 
-    /*チャットの送信*/
     Route::post('/mypage/chat/{item_id}', [ChatController::class, 'storeMessage']);
 
-    /*チャットの編集*/
     Route::put('/mypage/chat/{chat}', [ChatController::class, 'update']);
 
-    /*チャットの削除*/
     Route::delete('/mypage/chat/{chat}', [ChatController::class, 'destroy']);
 
-    /*評価の送信*/
     Route::post('/mypage/chat/{item_id}/rate', [ChatController::class, 'storeRating']);
 });
 

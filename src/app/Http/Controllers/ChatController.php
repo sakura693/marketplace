@@ -9,21 +9,22 @@ use App\Models\User;
 use App\Models\Order; 
 use App\Models\Chat; 
 use App\Http\Requests\MessageRequest; 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionCompletion;
 
 class ChatController extends Controller
 {
-    /*（仮）チャット画面を取得*/
     public function chat($item_id){
-        $user = auth()->user(); //ログインユーザー
-
-        $item = Item::with('user')->findOrFail($item_id); //item情報とuser情報を取得
-
+        $user = auth()->user();
+        $item = Item::with('user')->findOrFail($item_id); 
         $order = Order::where('item_id', $item_id)->first();
-
-        //ログインユーザーが出品者なら購入者の名前を、購入者なら出品者の名前を表示
-        $partner = ($user->id === $item->user_id) ? $order->user : $item->user;
-        
+        $partner = ($user->id === $item->user_id) ? $order->user : $item->user;        
         $chats = Chat::where('order_id', $order->id)->with('user')->orderBy('created_at', 'asc')->get();
+
+        Chat::where('order_id', $order->id)
+        ->where('user_id', '!=', $user->id)  
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
 
         $editId = request()->query('edit');
         $editMessage = null;
@@ -32,10 +33,18 @@ class ChatController extends Controller
             $editMessage = Chat::find($editId);
         }
 
-        return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage'));
+        $otherItems = Item::where('sold', 1)
+        ->where('id', '!=', $item_id)
+        ->where(function($query) use ($user){
+            $query->where('user_id', $user->id)
+            ->orWhereHas('order', function($q) use ($user){
+                $q->where('user_id', $user->id);
+            });
+        })->get();
+
+        return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage', 'otherItems'));
     }
 
-    /*メッセージの送信*/
     public function storeMessage(MessageRequest $request, $item_id){
         $order = Order::where('item_id', $item_id)->where(function ($query){
             $query->where('user_id', auth()->id())
@@ -59,6 +68,11 @@ class ChatController extends Controller
         }
         $chat->save();
 
+        $receiver = ($order->user_id === auth()->id()) ? $order->item->user : $order->user;
+
+        $chat->is_read = false;  
+        $chat->save();
+
         return redirect()->back();
     }
 
@@ -73,7 +87,6 @@ class ChatController extends Controller
         return redirect()->back();
     }
 
-    /*評価保存機能*/
     public function storeRating(Request $request, $item_id){
         $user = auth()->user();
 
@@ -83,7 +96,11 @@ class ChatController extends Controller
             });})->first();
 
         if ($order->item->user_id === $user->id) {
-            $order->seller_rating = $request->rating;
+            if($order->buyer_rating !== null){
+                $order->seller_rating = $request->rating;
+            }else{
+               return redirect()->back(); 
+            }
         } elseif ($order->user_id === $user->id) {
             $order->buyer_rating = $request->rating;
         } 
@@ -94,6 +111,10 @@ class ChatController extends Controller
         }
 
         $order->save();
+
+        if ($order->item->sold == '2') {
+            Mail::to($order->user->email)->send(new TransactionCompletion($order));
+        }
         return redirect()->to("/");
     }
 }

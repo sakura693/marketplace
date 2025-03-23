@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth; 
 use App\Http\Requests\ProfileRequest; 
 use App\Http\Requests\AddressRequest; 
 use App\Models\Profile; 
 use App\Models\Item; 
 use App\Models\User; 
 use App\Models\Order; 
-use Illuminate\Support\Facades\Auth; 
+use App\Models\Chat; 
 
 
 class ProfileController extends Controller
@@ -55,6 +57,24 @@ class ProfileController extends Controller
             });
         }
 
+        $orders = Order::where(function($query) use ($user) {
+            $query->where('user_id', $user->id)         
+            ->orWhereHas('item', function($q) use ($user) {
+                $q->where('user_id', $user->id); 
+            });
+        })->with('item')->get();
+        
+        $unreadCount = [];      
+        $unreadTotal = 0;      
+        foreach ($orders as $order) {
+            $count = Chat::where('order_id', $order->id)
+            ->where('user_id', '!=', $user->id)
+            ->where('is_read', false)
+            ->count();
+            $unreadCount[$order->item->id] = $count; 
+            $unreadTotal += $count;  
+        }
+
         $ratings = [];  
         $sellerRating = Order::whereHas('item', function ($query) use ($user) {
             $query->where('user_id', $user->id); 
@@ -78,7 +98,7 @@ class ProfileController extends Controller
             $finalRating = 0; 
         }
         
-        return view('profile', compact('items', 'user', 'tab', 'finalRating'));
+        return view('profile', compact('items', 'user', 'tab', 'finalRating', 'unreadCount', 'unreadTotal'));
     }
 
     public function editProfile(Request $request){
@@ -99,9 +119,6 @@ class ProfileController extends Controller
         }
         $user = Auth::user();
         $user->update($profiles);
-
         return redirect('/');
     }
-
-
 }

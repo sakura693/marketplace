@@ -36,6 +36,10 @@ class Item extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function order(){
+        return $this->hasOne(Order::class, 'item_id');
+    }
+
     public function scopeKeywordSearch($query, $keyword){
         if(!empty($keyword)){
             $query->where('name', 'like', '%' . $keyword . '%');

@@ -20,8 +20,6 @@
 </div>
 @endsection
 
-
-
 @section('content')
 <div class="content-form">
     <div class="profile-contnt">
@@ -37,7 +35,6 @@
             <div class="text">
                 <div class="left-container">
                     <p class="user-name">{{ $user->name }}</p>
-                    <!--星アイコン-->
                     <div class="icon-container">
                         @if($finalRating > 0)
                             @for ($i = 1; $i <= 5; $i++)
@@ -46,7 +43,6 @@
                         @endif
                     </div>
                 </div>
-                
                 
                 <div class="profile-label__container">
                     <a class="profile-label" href="/mypage/profile">プロフィールを編集</a>
@@ -60,10 +56,12 @@
             <a class="sell-label" href="/mypage?tab=sell">出品した商品</a>
             <a class="buy-label" href="/mypage?tab=buy">購入した商品</a>
             <a class="transaction-label" href="/mypage?tab=in-transaction">取引中の商品</a>
-            <!--数字部分⇩-->
-            <div class="notification">
-                <span class="message-count">2</span>
-            </div>
+
+            @if (($unreadTotal ?? 0) > 0)
+                <div class="notification">
+                    <span class="message-count">{{ $unreadTotal }}</span>
+                </div>
+            @endif
         </div>
     </div>
     
@@ -90,6 +88,11 @@
                     <a class="item-card__inner" href="/mypage/chat/{{$item->id}}">
                         <div class="item-card">
                             <div class="item-card__img-wrapper">
+                                @if ($unreadCount[$item->id] ?? 0 > 0)
+                                    <div class="each-notification">
+                                        <span class="message-count">{{ $unreadCount[$item->id] ?? 0  }}</span>
+                                    </div>
+                                @endif
                                 <img class="item-card__img" src="{{ asset($item->image) }}" alt="{{ $item->name }}">
                             </div>
                             <div class="item-label">
