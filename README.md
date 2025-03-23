@@ -37,10 +37,10 @@ MAIL_FROM_ADDRESSは任意のメールアドレスを入力してください。
 コンビニ支払いとカード支払いのオプションがありますが、決済画面にてコンビニ支払いを選択しますと、レシートを印刷する画面に遷移します。そのため、カード支払いを成功させた場合に意図する画面遷移が行える想定です。<br>
 
 StripeのAPIキーは以下のように設定してください。
-'''
+```
 STRIPE_PUBLIC_KEY="パブリックキー"
 STRIPE_SECRET_KEY="シークレットキー"
-'''
+```
 以下のリンクは公式ドキュメントです。
 https://docs.stripe.com/payments/checkout?locale=ja-JP
 
@@ -61,6 +61,8 @@ name: テストユーザー３ <br>
 email: test3@gmail.com <br>
 passsword: password <br>
 
+---
+
 ## 使用技術（実行環境）
 - PHP  8.3.9 <br>
 - Laravel 8.83.27 <br>
@@ -73,4 +75,4 @@ passsword: password <br>
 - phpmyadmin：http://localhost:8080/
 
 ## ER図
-![alt text](image-1.png)
+![alt text](image.png)
