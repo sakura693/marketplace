@@ -163,7 +163,7 @@
     background-color: rgb(224, 224, 224);
     width: 80%;
     height: 45px;
-    font-size: 10px;
+    font-size: 15px;
     padding: 1px 0 0 3px;
 }
 
@@ -364,5 +364,10 @@
 
     .inner-content__top {
         padding-top: 45px;
+    }
+
+    .image {
+        width: 200px;
+        height: 200px;
     }
 }

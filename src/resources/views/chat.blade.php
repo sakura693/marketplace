@@ -138,7 +138,7 @@
                     @csrf
                     <div class="message-container">
                         <div class="message-container__inner">
-                            <input class="message-input" type="text" name="message" placeholder="取引メッセージを記入してください" value="{{ old('message') }}">
+                            <input class="message-input" type="text" name="message" placeholder="取引メッセージを記入してください" value="{{ old('message', $draft) }}">
                             <input class="img-upload" type="file" name="image" id="image">
                             <label class="img-label" for="image">画像を追加</label>
 

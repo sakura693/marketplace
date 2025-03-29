@@ -52,9 +52,20 @@ class ProfileController extends Controller
                 $query->where('user_id', $user->id)->where('sold', 1);  
             })->get();
 
-            $items = $orders->map(function ($order) {
-            return $order->item;
-            });
+            $orderIds = $orders->pluck('id');
+
+            $chats = Chat::whereIn('order_id', $orderIds)->orderBy('created_at', 'desc')->get();
+
+            $orderedItemIds = $chats->map(fn($chat) => $chat->order_id)->unique()->toArray();
+
+            $itemsWithChats = collect($orderedItemIds)->map(function ($orderId) use ($orders) {
+                $order = $orders->firstWhere('id', $orderId);
+                return isset($order) ? $order->item : null;
+            })->filter(); 
+
+            $itemsWithoutChats = $orders->reject(fn($order) => in_array($order->id, $orderedItemIds))->map(fn($order) => $order->item);
+
+            $items = $itemsWithChats->merge($itemsWithoutChats);
         }
 
         $orders = Order::where(function($query) use ($user) {

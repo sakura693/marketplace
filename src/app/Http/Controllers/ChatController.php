@@ -40,9 +40,28 @@ class ChatController extends Controller
             ->orWhereHas('order', function($q) use ($user){
                 $q->where('user_id', $user->id);
             });
-        })->get();
+        })
+        ->with(['order' => function ($query) {
+            $query->with(['chats' => function ($q) {
+                $q->orderBy('created_at', 'desc')->limit(1); 
+            }]);
+        }])
+        ->get();
 
-        return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage', 'otherItems'));
+    $otherItems = $otherItems->sortByDesc(function ($item) {
+        return optional($item->order->chats->first())->created_at;
+    });
+
+    $draft = session('chat_draft'); // セッションから入力済みのメッセージを取り出す
+
+    return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage', 'otherItems', 'draft'));
+    }
+
+    //追加⇩
+    public function saveDraft(Request $request)
+    {
+        session()->put('chat_draft', $request->input('message'));
+        return redirect()->back();
     }
 
     public function storeMessage(MessageRequest $request, $item_id){
@@ -52,7 +71,7 @@ class ChatController extends Controller
                     $q->where('user_id', auth()->id());
                   });
         })->firstOrFail();
-        
+
         $chat = Chat::create([
             'order_id' => $order->id,
             'user_id' => auth()->id(),
@@ -96,12 +115,19 @@ class ChatController extends Controller
             });})->first();
 
         if ($order->item->user_id === $user->id) {
-            if($order->buyer_rating !== null){
-                $order->seller_rating = $request->rating;
-            }else{
+            if($order->seller_rating !== null){
+                return redirect()->back();
+            }
+            if($order->buyer_rating === null)
+            {
                return redirect()->back(); 
             }
+            $order->seller_rating = $request->rating;
+
         } elseif ($order->user_id === $user->id) {
+            if($order->buyer_rating !== null){
+                return redirect()->back();
+            }    
             $order->buyer_rating = $request->rating;
         } 
 
