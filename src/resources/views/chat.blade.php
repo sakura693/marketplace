@@ -138,11 +138,14 @@
                     @csrf
                     <div class="message-container">
                         <div class="message-container__inner">
-                            <input class="message-input" type="text" name="message" placeholder="取引メッセージを記入してください" value="{{ old('message', $draft) }}">
+                            <input class="message-input" type="text" name="message" placeholder="取引メッセージを記入してください" value="{{ old('message', session('draft_message_' . $item->id)) }}">
+
+                            <button class="draft-save-btn" type="submit" name="action" value="save">一時保存</button>
+
                             <input class="img-upload" type="file" name="image" id="image">
                             <label class="img-label" for="image">画像を追加</label>
 
-                            <button class="message-send-btn">
+                            <button class="message-send-btn" name="action" value="send">
                                 <i class="fa-regular fa-paper-plane fa-2xl plane-icon" style="color: #bcbcbd;"></i>
                             </button>
                         </div>

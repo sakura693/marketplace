@@ -51,6 +51,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/mypage/chat/{item_id}', [ChatController::class, 'storeMessage']);
 
+    //追加⇩
+    Route::post('/mypage/chat/draft/{next_item_id}', [ChatController::class, 'saveDraft']);
+
     Route::put('/mypage/chat/{chat}', [ChatController::class, 'update']);
 
     Route::delete('/mypage/chat/{chat}', [ChatController::class, 'destroy']);

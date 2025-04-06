@@ -48,23 +48,25 @@ class ChatController extends Controller
         }])
         ->get();
 
-    $otherItems = $otherItems->sortByDesc(function ($item) {
-        return optional($item->order->chats->first())->created_at;
-    });
+        $otherItems = $otherItems->sortByDesc(function ($item) {
+            return optional($item->order->chats->first())->created_at;
+        }); 
 
-    $draft = session('chat_draft'); // セッションから入力済みのメッセージを取り出す
-
-    return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage', 'otherItems', 'draft'));
-    }
-
-    //追加⇩
-    public function saveDraft(Request $request)
-    {
-        session()->put('chat_draft', $request->input('message'));
-        return redirect()->back();
+        return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage', 'otherItems'));
     }
 
     public function storeMessage(MessageRequest $request, $item_id){
+
+        //追加⇩
+        $action = $request->input('action');
+        if ($action === 'save'){
+            session(['draft_message_' . $item_id => $request->input('message')]);
+            return redirect()->back();
+        }
+        if ($action === 'send'){
+            session()->forget('draft_message_' . $item_id);
+        }
+
         $order = Order::where('item_id', $item_id)->where(function ($query){
             $query->where('user_id', auth()->id())
                   ->orWhereHas('item', function($q){
@@ -91,7 +93,7 @@ class ChatController extends Controller
 
         $chat->is_read = false;  
         $chat->save();
-
+        
         return redirect()->back();
     }
 
