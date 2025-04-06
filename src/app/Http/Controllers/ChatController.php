@@ -40,19 +40,38 @@ class ChatController extends Controller
             ->orWhereHas('order', function($q) use ($user){
                 $q->where('user_id', $user->id);
             });
-        })->get();
+        })
+        ->with(['order' => function ($query) {
+            $query->with(['chats' => function ($q) {
+                $q->orderBy('created_at', 'desc')->limit(1); 
+            }]);
+        }])
+        ->get();
+
+        $otherItems = $otherItems->sortByDesc(function ($item) {
+            return optional($item->order->chats->first())->created_at;
+        }); 
 
         return view('chat', compact('item', 'user', 'partner', 'chats', 'editMessage', 'otherItems'));
     }
 
     public function storeMessage(MessageRequest $request, $item_id){
+        $action = $request->input('action');
+        if ($action === 'save'){
+            session(['draft_message_' . $item_id => $request->input('message')]);
+            return redirect()->back();
+        }
+        if ($action === 'send'){
+            session()->forget('draft_message_' . $item_id);
+        }
+
         $order = Order::where('item_id', $item_id)->where(function ($query){
             $query->where('user_id', auth()->id())
                   ->orWhereHas('item', function($q){
                     $q->where('user_id', auth()->id());
                   });
         })->firstOrFail();
-        
+
         $chat = Chat::create([
             'order_id' => $order->id,
             'user_id' => auth()->id(),
@@ -72,7 +91,7 @@ class ChatController extends Controller
 
         $chat->is_read = false;  
         $chat->save();
-
+        
         return redirect()->back();
     }
 
@@ -96,12 +115,19 @@ class ChatController extends Controller
             });})->first();
 
         if ($order->item->user_id === $user->id) {
-            if($order->buyer_rating !== null){
-                $order->seller_rating = $request->rating;
-            }else{
+            if($order->seller_rating !== null){
+                return redirect()->back();
+            }
+            if($order->buyer_rating === null)
+            {
                return redirect()->back(); 
             }
+            $order->seller_rating = $request->rating;
+
         } elseif ($order->user_id === $user->id) {
+            if($order->buyer_rating !== null){
+                return redirect()->back();
+            }    
             $order->buyer_rating = $request->rating;
         } 
 
