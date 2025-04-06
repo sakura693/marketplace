@@ -56,8 +56,6 @@ class ChatController extends Controller
     }
 
     public function storeMessage(MessageRequest $request, $item_id){
-
-        //追加⇩
         $action = $request->input('action');
         if ($action === 'save'){
             session(['draft_message_' . $item_id => $request->input('message')]);
